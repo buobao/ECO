@@ -37,13 +37,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     BottomTab mTab1,mTab2,mTab3;
     private LinearLayout mContent;
 
-    private boolean isMenuOpened;
+    //菜单是否打开
+    private boolean isMenuOpened=false;
+    //当前在哪个切换页
+    private int currIndex=0;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_home);
+
 
         //设置顶部工具栏
         mActionBar = (Toolbar) findViewById(R.id.act_home_actionbar);
@@ -114,12 +119,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 switch (checkedId) {
                     case R.id.tab_01:
+                        exchangeTab(0);
                         Toast.makeText(getBaseContext(), "第1个", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.tab_02:
+                        exchangeTab(1);
                         Toast.makeText(getBaseContext(), "第2个", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.tab_03:
+                        exchangeTab(2);
                         Toast.makeText(getBaseContext(), "第3个", Toast.LENGTH_SHORT).show();
                         break;
                 }
@@ -127,10 +135,41 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         //以下是设置红点的代码
-        mTab1.getHintTextView().setBackgroundResource(R.drawable.hint_red);
-        mTab1.setHint("10");
-        mTab1.getHintTextView().setTextColor(0xffffffff);
+        setTabHint(mTab1,20);
+        setTabHint(mTab2,43);
+        setTabHint(mTab3,105);
 
+
+    }
+
+    //设置tab上的数字
+    private void setTabHint(BottomTab tab, int number){
+        tab.getHintTextView().setBackgroundResource(R.drawable.hint_red);
+        if (number < 100) {
+            tab.setHint(number + "");
+        } else {
+            tab.setHint("99+");
+        }
+        tab.getHintTextView().setTextColor(0xffffffff);
+    }
+
+    //tab切换处理
+    private void exchangeTab(int index){
+        switch (currIndex){
+            case 0:
+                mTab1.getHintTextView().setText("");
+                mTab1.getHintTextView().setVisibility(View.GONE);
+                break;
+            case 1:
+                mTab2.getHintTextView().setText("");
+                mTab2.getHintTextView().setVisibility(View.GONE);
+                break;
+            case 2:
+                mTab3.getHintTextView().setText("");
+                mTab3.getHintTextView().setVisibility(View.GONE);
+                break;
+        }
+        currIndex = index;
     }
 
     /**
