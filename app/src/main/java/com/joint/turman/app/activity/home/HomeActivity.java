@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.joint.turman.app.R;
+import com.joint.turman.app.base.BaseActivity;
+import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.drawable.MaterialMenuDrawable;
 import com.joint.turman.customwidget.bottomtab.BottomTab;
 import com.joint.turman.customwidget.bottomtab.BottomTabGroup;
@@ -20,7 +22,7 @@ import com.joint.turman.customwidget.tableview.TableView;
 /**
  * Created by dqf on 2016/3/3.
  */
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "HomeActivity";
 
@@ -42,14 +44,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     //当前在哪个切换页
     private int currIndex=0;
 
-
+    @Override
+    protected int getLayout() {
+        return R.layout.act_home;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_home);
-
-
+    protected void init() {
+        super.init();
         //设置顶部工具栏
         mActionBar = (Toolbar) findViewById(R.id.act_home_actionbar);
         mActionBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -138,8 +140,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setTabHint(mTab1,20);
         setTabHint(mTab2,43);
         setTabHint(mTab3,105);
-
-
     }
 
     //设置tab上的数字
@@ -215,9 +215,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //这里需要完善！！
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        TurmanApplication.checkExit(this);
     }
+
 }

@@ -7,12 +7,13 @@ import android.widget.Button;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.activity.home.HomeActivity;
+import com.joint.turman.app.base.BaseActivity;
 import com.joint.turman.app.sys.TurmanApplication;
 
 /**
  * Created by dqf on 2016/3/2.
  */
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     protected static final String TAG = "LoginActivity";
 
     private Button mLoginButton;
@@ -21,9 +22,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private Button mRegistButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_login);
+    protected void init() {
+        super.init();
         mLoginButton = (Button) findViewById(R.id.act_login_btnLogin);
         mQuickButton = (Button) findViewById(R.id.act_login_btn_loginQuick);
         mRegistButton = (Button) findViewById(R.id.act_login_register);
@@ -32,6 +32,16 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         mQuickButton.setOnClickListener(this);
         mRegistButton.setOnClickListener(this);
         mForgetPswButton.setOnClickListener(this);
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.act_login;
+    }
+
+    @Override
+    public void onBackPressed() {
+        TurmanApplication.checkExit(this);
     }
 
     @Override

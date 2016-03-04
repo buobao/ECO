@@ -26,6 +26,7 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity android:name=".activity.home.HomeActivity"
             android:launchMode="singleTask"
