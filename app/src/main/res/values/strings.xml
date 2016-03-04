@@ -21,7 +21,7 @@
     <string name="act_home_check_info">签到信息</string>
     <string name="act_home_feedback_info">信息反馈</string>
     <string name="act_home_communication">工作交流</string>
-    <string name="act_home_notice">公告一览</string>
+    <string name="act_home_notice">企业公告</string>
     <string name="act_home_setting">系统设置</string>
 
     <string name="act_home_bottom_1">我的消息</string>

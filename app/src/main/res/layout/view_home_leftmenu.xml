@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/app_base_background" >
+        android:background="@color/app_base_background"
+        android:id="@+id/leftmenu_list"
+        >
 
         <!--头像-->
         <com.joint.turman.customwidget.tableview.TableView
