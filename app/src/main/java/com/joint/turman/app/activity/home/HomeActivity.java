@@ -214,4 +214,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    //这里需要完善！！
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
