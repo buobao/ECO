@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+<include android:id="@+id/act_home_actionbar"
+    layout="@layout/view_actionbar"/>
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/act_home_actionbar"
+        android:id="@+id/act_home_mainContainer"
+        >
+        <include android:id="@+id/act_home_content"
+            layout="@layout/view_home_content"/>
+
+        <include android:id="@+id/act_home_leftMenu"
+            layout="@layout/view_home_leftmenu"/>
+
+    </android.support.v4.widget.DrawerLayout>
+
+</RelativeLayout>

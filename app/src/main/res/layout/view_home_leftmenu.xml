@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="250dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:scrollbars="none"
+    android:background="@color/colorWhite" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/app_base_background" >
+
+        <!--头像-->
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_myinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_image="@drawable/ic_default_avatar"
+            app:icon_largeSize="true"
+            app:icon_imageWidth="@dimen/avatar_size"
+            app:icon_imageHeight="@dimen/avatar_size"
+            app:left_text="@string/act_home_profile" />
+
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_client"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_yahoo"
+            app:icon_font_color="@color/menu_purple"
+            app:left_text="@string/act_home_client_info" />
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_linkman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_apple"
+            app:icon_font_color="@color/menu_green"
+            app:left_text="@string/act_home_linkman_info" />
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_paw"
+            app:icon_font_color="@color/menu_blue"
+            app:left_text="@string/act_home_project_info" />
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_database"
+            app:icon_font_color="@color/menu_red"
+            app:left_text="@string/act_home_check_info" />
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_fast_backward"
+            app:icon_font_color="@color/menu_verdant"
+            app:left_text="@string/act_home_feedback_info" />
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_communication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_krw"
+            app:icon_font_color="@color/menu_yellow"
+            app:left_text="@string/act_home_communication" />
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_info"
+            app:icon_font_color="@color/menu_orange"
+            app:left_text="@string/act_home_notice" />
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+        <com.joint.turman.customwidget.tableview.TableView
+            android:id="@+id/leftmenu_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:show_arrow="false"
+            app:icon_font="@string/fa_cog"
+            app:icon_font_color="@color/menu_purple"
+            app:left_text="@string/act_home_setting" />
+
+        <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+    </LinearLayout>
+
+
+</ScrollView>

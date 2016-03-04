@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="text_18">
+        <item name="android:textSize">12.0sp</item>
+    </style>
+    <style name="text_selector_18" parent="@style/text_18">
+        <item name="android:textColor">@color/item_text_selector</item>
+    </style>
+    <style name="text_dark_gray_18" parent="@style/text_18">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="text_gray_18" parent="@style/text_18">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
+    <style name="text_light_gray_18" parent="@style/text_18">
+        <item name="android:textColor">@color/colorLightGray</item>
+    </style>
+    <style name="text_orange_18" parent="@style/text_18">
+        <item name="android:textColor">@color/colorOrange</item>
+    </style>
+    <style name="text_green_18" parent="@style/text_18">
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
+    <style name="text_blue_18" parent="@style/text_18">
+        <item name="android:textColor">@color/colorBlue</item>
+    </style>
+    <style name="text_dark_blue_18" parent="@style/text_18">
+        <item name="android:textColor">@color/colorDarkBlue</item>
+    </style>
+
+    <style name="text_22">
+        <item name="android:textSize">14.699982sp</item>
+    </style>
+    <style name="text_selector_22" parent="@style/text_22">
+        <item name="android:textColor">@color/item_text_selector</item>
+    </style>
+    <style name="text_dark_gray_22" parent="@style/text_22">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="text_gray_22" parent="@style/text_22">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
+    <style name="text_light_gray_22" parent="@style/text_22">
+        <item name="android:textColor">@color/colorLightGray</item>
+    </style>
+    <style name="text_orange_22" parent="@style/text_22">
+        <item name="android:textColor">@color/colorOrange</item>
+    </style>
+    <style name="text_green_22" parent="@style/text_22">
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
+    <style name="text_blue_22" parent="@style/text_22">
+        <item name="android:textColor">@color/colorBlue</item>
+    </style>
+    <style name="text_dark_blue_22" parent="@style/text_22">
+        <item name="android:textColor">@color/colorDarkBlue</item>
+    </style>
+
+    <style name="text_24">
+        <item name="android:textSize">16.0sp</item>
+    </style>
+    <style name="text_selector_24" parent="@style/text_24">
+        <item name="android:textColor">@color/item_text_selector</item>
+    </style>
+    <style name="text_dark_gray_24" parent="@style/text_24">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="text_gray_24" parent="@style/text_24">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
+    <style name="text_light_gray_24" parent="@style/text_24">
+        <item name="android:textColor">@color/colorLightGray</item>
+    </style>
+    <style name="text_orange_24" parent="@style/text_24">
+        <item name="android:textColor">@color/colorOrange</item>
+    </style>
+    <style name="text_green_24" parent="@style/text_24">
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
+    <style name="text_blue_24" parent="@style/text_24">
+        <item name="android:textColor">@color/colorBlue</item>
+    </style>
+    <style name="text_dark_blue_24" parent="@style/text_24">
+        <item name="android:textColor">@color/colorDarkBlue</item>
+    </style>
+
+    <style name="wheel_item_divider">
+        <item name="android:background">@color/base_divider_color</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1.0px</item>
+    </style>
+
+    <style name="wheel_button">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@drawable/wheel_btn_bg</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">40.0dip</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="TextViewBase">
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textColorHint">@color/colorLightGray</item>
+    </style>
+
+    <style name="TextViewBase.EditText" parent="TextViewBase">
+        <item name="android:cursorVisible">true</item>
+    </style>
+</resources>

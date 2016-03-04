@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/table_layout_icon_image"
+        android:layout_width="@dimen/space_28"
+        android:layout_height="@dimen/space_28"
+        android:layout_marginRight="@dimen/space_16"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter"
+        android:contentDescription="@null" />
+
+    <com.joint.turman.customwidget.textview.FontAwesomeText
+        android:visibility="gone"
+        android:id="@+id/table_layout_icon_font"
+        android:layout_width="@dimen/space_28"
+        android:layout_height="@dimen/space_28"
+        android:layout_marginRight="@dimen/space_16"
+        android:layout_toRightOf="@id/table_layout_icon_image"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textColor="@color/theme_default_400"
+        android:textSize="@dimen/text_size_16"
+        />
+
+    <LinearLayout
+        android:id="@+id/table_layout_text"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/space_16"
+        android:layout_toRightOf="@id/table_layout_icon_font"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/table_layout_left_text"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            style="@style/text_selector_22" />
+
+        <TextView
+            android:id="@+id/table_layout_left_text_2"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_6"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            style="@style/text_light_gray_18" />
+
+        <TextView
+            android:id="@+id/table_layout_left_text_3"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_6"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            style="@style/text_light_gray_18" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/table_layout_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_16"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/table_arrow"
+        android:contentDescription="@null"/>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/table_layout_right_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/table_layout_text"
+        android:layout_toLeftOf="@id/table_layout_arrow"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:gravity="end"
+        android:singleLine="true"
+        style="@style/text_light_gray_22" />
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/table_layout_right_image"
+        android:layout_width="@dimen/space_28"
+        android:layout_height="@dimen/space_28"
+        android:layout_toLeftOf="@id/table_layout_arrow"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter"
+        android:contentDescription="@null"/>
+
+    <android.support.v7.widget.SwitchCompat
+        android:visibility="gone"
+        android:id="@+id/table_layout_toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/table_layout_arrow"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:background="@color/transparent"
+        android:clickable="false"/>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/table_layout_new_indicator"
+        android:layout_width="@dimen/space_8"
+        android:layout_height="@dimen/space_8"
+        android:layout_toRightOf="@id/table_layout_text"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/tab_notification_dot"
+        android:contentDescription="@null" />
+
+</merge>

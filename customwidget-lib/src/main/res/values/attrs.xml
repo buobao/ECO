@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- custom attr -->
+    <declare-styleable name="FontAwesomeText">
+        <attr name="fa_icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="tableView">
+        <attr name="table_backgroud_change"  format="boolean"/>
+        <attr name="show_arrow" format="boolean" />
+        <attr name="icon_image" format="reference" />
+        <attr name="icon_largeSize" format="boolean" />
+        <attr name="icon_imageWidth" format="reference|dimension" />
+        <attr name="icon_imageHeight" format="reference|dimension" />
+        <attr name="icon_font" format="reference|string" />
+        <attr name="icon_font_color" format="reference|color" />
+        <attr name="left_text" format="reference|string"/>
+        <attr name="left_text_2" format="reference|string"/>
+        <attr name="left_text_3" format="reference|string"/>
+        <attr name="right_text" format="reference|string"/>
+        <attr name="right_image" format="reference"/>
+        <attr name="show_togglebutton" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="bottomTab">
+        <attr name="android:text"/>
+        <attr name="android:textColor"/>
+        <attr name="android:drawableTop"/>
+        <attr name="android:textSize"/>
+    </declare-styleable>
+</resources>

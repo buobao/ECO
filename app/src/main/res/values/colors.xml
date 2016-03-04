@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--init color-->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--base color-->
+    <color name="white40">#40FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#808080</color>
+    <color name="red">#FF0000</color>
+    <color name="gold">#FFD700</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#008000</color>
+    <color name="blue">#0000FF</color>
+    <color name="purple">#800080</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="orange">#FFA500</color>
+    <color name="lemonyellow">#FFFACD</color>
+    <color name="graywhite">#F5F5F5</color>
+    <color name="grayslate">#708090</color>
+    <color name="lightblue">#0083FF</color>
+
+    <color name="app_base_background">#FFE9E8E5</color>
+    <color name="app_subject_color">#282828</color>
+    <color name="act_login_background">#FFE6E6E6</color>
+
+    <!-- form -->
+    <color name="form_divider_color">@color/base_divider_color</color>
+
+
+    <!-- 菜单 -->
+    <color name="menu_red">#f96666</color>
+    <color name="menu_orange">#ff9933</color>
+    <color name="menu_yellow">#e0cc2f</color>
+    <color name="menu_green">#98cc71</color>
+    <color name="menu_blue">#7198e0</color>
+    <color name="menu_verdant">#4bbcd4</color>
+    <color name="menu_purple">#aa75f3</color>
+
+    <!--切换页标签颜色-->
+    <color name="tab_blue">#00A2ED</color>
+    <color name="tab_green">#40AA53</color>
+    <color name="tab_gray">#9A9A9A</color>
+    <color name="tab_black">#353535</color>
+    <color name="tab_red">#FFFD4B4A</color>
+    <color name="tab_purple">#576B95</color>
+    <color name="tab_nor">#ff707070</color>
+
+    <color name="menu_gray">#727272</color>
+</resources>

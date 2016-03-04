@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">ECO</string>
+    <string name="app_name_cn">工程泛联客</string>
+
+    <!--welcome activity-->
+    <string name="act_welcome_start">开始使用</string>
+
+    <!--login activity-->
+    <string name="act_login_forgetpassword">忘记密码</string>
+    <string name="act_login_register">注册</string>
+    <string name="act_login_login">登录</string>
+    <string name="act_login_quick">快速体验</string>
+    <string name="act_login_hint_username">请输入手机号</string>
+    <string name="act_login_hint_password">请输入密码</string>
+
+    <!--home activity-->
+    <string name="act_home_profile">个人设置</string>
+    <string name="act_home_client_info">客户信息一览</string>
+    <string name="act_home_linkman_info">联系人信息</string>
+    <string name="act_home_project_info">项目一览</string>
+    <string name="act_home_check_info">签到信息</string>
+    <string name="act_home_feedback_info">信息反馈</string>
+    <string name="act_home_communication">工作交流</string>
+    <string name="act_home_notice">公告一览</string>
+    <string name="act_home_setting">系统设置</string>
+
+    <string name="act_home_bottom_1">我的消息</string>
+    <string name="act_home_bottom_2">当前项目</string>
+    <string name="act_home_bottom_3">只是共享</string>
+
+</resources>

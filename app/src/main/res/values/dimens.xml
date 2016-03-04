@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_bigger_size">90.0dip</dimen>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <dimen name="pager_sliding_tab_strip_height">40.0dip</dimen>
+
+    <dimen name="avatar_size">45.0dip</dimen>
+    <dimen name="avatar_size_small">15.0dip</dimen>
+    <dimen name="list_item_avatar_size">40.0dip</dimen>
+    <dimen name="list_item_avatar_size_big">90.0dip</dimen>
+    <dimen name="list_item_avatar_size_small">15.0dip</dimen>
+    <dimen name="list_item_image_size">80.0dip</dimen>
+
+    <dimen name="popo_menu_dialog_width">180dp</dimen>
+
+    <dimen name="dialog_margin">7.0dip</dimen>
+    <dimen name="global_padding">8.0dip</dimen>
+    <dimen name="global_dialog_padding">16.0dip</dimen>
+    <dimen name="text_regular_primary_size">14.0dip</dimen>
+    <dimen name="text_large_secondary_size">12.0dip</dimen>
+    <dimen name="text_large_primary_size">16.0dip</dimen>
+
+    <dimen name="timeline_small_card_icon_width">12.0dip</dimen>
+    <dimen name="timeline_small_card_icon_height">12.0dip</dimen>
+    <dimen name="timeline_small_card_icon_margin_left">5.0dip</dimen>
+    <dimen name="timeline_small_card_triangle_margin_left">5.0dip</dimen>
+    <dimen name="timeline_small_card_triangle_margin_right">4.0dip</dimen>
+    <dimen name="timeline_small_card_title_margin_left">5.0dip</dimen>
+    <dimen name="timeline_small_card_title_text_size">12.0sp</dimen>
+
+    <dimen name="timeline_small_card_height">20.0dip</dimen>
+    <dimen name="timeline_small_card_min_width">66.0dip</dimen>
+    <dimen name="timeline_small_card_padding_right">5.0dip</dimen>
+
+    <dimen name="tab_height">40dp</dimen>
+</resources>

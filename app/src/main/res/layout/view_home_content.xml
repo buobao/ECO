@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_base_background" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/content_fragment"
+        >
+
+    </FrameLayout>
+    <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+    <com.joint.turman.customwidget.bottomtab.BottomTabGroup
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:id="@+id/tab_group"
+        >
+        <com.joint.turman.customwidget.bottomtab.BottomTab
+            android:id="@+id/tab_01"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/act_home_bottom_1"
+            android:textColor="@color/home_bottom_text_selector"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/home_bottom_icon_selector_1"
+            />
+        <com.joint.turman.customwidget.bottomtab.BottomTab
+            android:id="@+id/tab_02"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/act_home_bottom_2"
+            android:textColor="@color/home_bottom_text_selector"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/home_bottom_icon_selector_2"/>
+        <com.joint.turman.customwidget.bottomtab.BottomTab
+            android:id="@+id/tab_03"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/act_home_bottom_3"
+            android:textColor="@color/home_bottom_text_selector"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/home_bottom_icon_selector_3"/>
+    </com.joint.turman.customwidget.bottomtab.BottomTabGroup>
+
+</LinearLayout>
