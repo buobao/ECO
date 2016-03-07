@@ -2,6 +2,10 @@
     <string name="app_name">ECO</string>
     <string name="app_name_cn">工程泛联客</string>
 
+    <!--global-->
+    <string name="logining">正在登录...</string>
+    <string name="loading">正在加载...</string>
+
     <!--welcome activity-->
     <string name="act_welcome_start">开始使用</string>
 
@@ -27,5 +31,6 @@
     <string name="act_home_bottom_1">我的消息</string>
     <string name="act_home_bottom_2">当前项目</string>
     <string name="act_home_bottom_3">只是共享</string>
+
 
 </resources>

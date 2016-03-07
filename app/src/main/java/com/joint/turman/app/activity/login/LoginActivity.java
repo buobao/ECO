@@ -1,12 +1,10 @@
 package com.joint.turman.app.activity.login;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.joint.turman.app.R;
-import com.joint.turman.app.activity.home.HomeActivity;
 import com.joint.turman.app.base.BaseActivity;
 import com.joint.turman.app.sys.TurmanApplication;
 
@@ -21,6 +19,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private Button mForgetPswButton;
     private Button mRegistButton;
 
+    //用户登录的电话和密码
+    private String mUserPhone;
+    private String mPassword;
+
+    private EditText mEdPhone;
+    private EditText mEdPassword;
+
+
     @Override
     protected void init() {
         super.init();
@@ -32,6 +38,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mQuickButton.setOnClickListener(this);
         mRegistButton.setOnClickListener(this);
         mForgetPswButton.setOnClickListener(this);
+
+        mEdPhone = (EditText) findViewById(R.id.act_login_phone);
+        mEdPassword = (EditText) findViewById(R.id.act_login_password);
     }
 
     @Override
@@ -48,7 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.act_login_btnLogin:
-                TurmanApplication.openActivity(LoginActivity.this, HomeActivity.class, null, true);
+                    //TurmanApplication.openActivity(LoginActivity.this, HomeActivity.class, null, true);
                 break;
             case R.id.act_login_btn_loginQuick:
                 break;
@@ -57,6 +66,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.act_login_forget_password:
                 break;
         }
+    }
+
+
+    private void login(boolean rememberMe){
+        mUserPhone = mEdPhone.getText().toString();
+        mPassword = mEdPassword.getText().toString();
+        showWaitDialog(R.string.logining);
     }
 }
 

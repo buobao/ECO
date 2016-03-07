@@ -74,4 +74,24 @@
     <color name="calender_item_dis">@color/theme_default_300</color>
     <color name="calender_item_text">@color/colorWhite</color>
     <color name="calender_item_text_dis">@color/theme_default_200</color>
+
+    <!--text color-->
+    <color name="ui_dialog_divider">@color/list_divider_color</color>
+    <color name="ui_dialog_list_text">#5E5E5E</color>
+    <color name="text_dark">#af000000</color>
+    <color name="text_light">#3f000000</color>
+    <color name="light_gray">#1a000000</color>
+    <color name="lightest_gray">#0a000000</color>
+    <color name="bg_touch">@color/lightest_gray</color>
+
+    <!-- list -->
+    <color name="list_divider_color">@color/base_divider_color</color>
+    <color name="list_item_background_normal">@color/base_item_bg_color_default</color>
+    <color name="list_item_background_pressed">@color/base_item_bg_color_pressed</color>
+
+    <color name="listitem_transparent">@color/transparent</color>
+    <color name="listitem_black">@color/colorDark</color>
+    <color name="listitem_white">@color/colorWhite</color>
+    <color name="listitem_blue">@color/theme_default_700</color>
+    <color name="listitem_gray">@color/colorLightGray</color>
 </resources>
