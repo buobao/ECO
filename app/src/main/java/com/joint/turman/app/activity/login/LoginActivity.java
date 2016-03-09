@@ -5,10 +5,17 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.base.BaseActivity;
+import com.joint.turman.app.bean.Result;
+import com.joint.turman.app.entity.Status;
+import com.joint.turman.app.entity.callback.UserCallback;
+import com.joint.turman.app.internate.OkHttpUtils;
 import com.joint.turman.app.sys.TurmanApplication;
+
+import okhttp3.Call;
 
 /**
  * Created by dqf on 2016/3/2.
@@ -79,6 +86,26 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String deviceId = tm.getDeviceId();
+        Toast.makeText(LoginActivity.this,"sss",Toast.LENGTH_SHORT).show();
+        OkHttpUtils
+                .post()
+                .url("http://cst.9joint-eco.com/ec-web/app/login.action")
+                .addParams("username",mUserPhone)
+                .addParams("password",mPassword)
+                .build()
+                .execute(new UserCallback() {
+                    @Override
+                    public void onResponse(Result response) {
+                        Status status = response.getResult();
+                        System.out.println("Turman-->>>>>>>>>>>"+status.getErrorMessage()+"["+status.getErrorCode()+"]");
+                    }
+
+                    @Override
+                    public void onError(Call call, Exception e) {
+                        super.onError(call, e);
+                    }
+                });
+        hideWaitDialog();
     }
 
 }

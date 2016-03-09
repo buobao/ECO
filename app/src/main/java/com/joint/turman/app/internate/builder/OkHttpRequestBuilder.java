@@ -17,7 +17,7 @@ public abstract class OkHttpRequestBuilder {
     public abstract OkHttpRequestBuilder tag(Object tag);
     public abstract OkHttpRequestBuilder headers(Map<String, String> headers);
     public abstract OkHttpRequestBuilder addHeader(String key, String val);
-    public abstract RequestCall buid();
+    public abstract RequestCall build();
 }
 
 

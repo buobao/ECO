@@ -53,7 +53,7 @@ public class GetBuilder extends OkHttpRequestBuilder implements HasParamsable {
     }
 
     @Override
-    public RequestCall buid() {
+    public RequestCall build() {
         if (params != null) {
             url = appendParams(url, params);
         }

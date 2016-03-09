@@ -63,7 +63,7 @@ public class PostFormBuilder extends OkHttpRequestBuilder implements HasParamsab
     }
 
     @Override
-    public RequestCall buid() {
+    public RequestCall build() {
         return new PostFormRequest(url, tag, params, headers, files).build();
     }
 

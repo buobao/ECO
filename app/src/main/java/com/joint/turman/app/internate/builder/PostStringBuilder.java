@@ -56,7 +56,7 @@ public class PostStringBuilder extends OkHttpRequestBuilder {
     }
 
     @Override
-    public RequestCall buid() {
+    public RequestCall build() {
         return new PostStringRequest(url, tag, params,headers,content, mediaType).build();
     }
 }

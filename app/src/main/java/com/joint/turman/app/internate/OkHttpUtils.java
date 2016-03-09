@@ -113,17 +113,49 @@ public class OkHttpUtils {
         if (callback == null){
             callback = Callback.CALLBACK_DEFAULT;
         }
-        final Callback fianlCallback = callback;
+        final Callback finalCallback = callback;
 
         requestCall.getCall().enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                sendFailResultCallback(call, e, fianlCallback);
+                sendFailResultCallback(call, e, finalCallback);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                if (response.code() >= 400 && response.code() <= 599)
+                {
+                    try
+                    {
+                        sendFailResultCallback(call, new RuntimeException(response.body().string()), finalCallback);
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    return;
+                }
 
+                try
+                {
+                    Object o = finalCallback.parseNetworkResponse(response);
+                    sendSuccessResultCallback(o, finalCallback);
+                } catch (Exception e)
+                {
+                    sendFailResultCallback(call, e, finalCallback);
+                }
+            }
+        });
+    }
+
+    private void sendSuccessResultCallback(final Object o, final Callback finalCallback) {
+        if (finalCallback == null) return;
+        mDelivery.post(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                finalCallback.onResponse(o);
+                finalCallback.onAfter();
             }
         });
     }
