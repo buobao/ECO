@@ -10,8 +10,6 @@ import com.joint.turman.app.activity.home.HomeActivity;
 import com.joint.turman.app.activity.login.LoginActivity;
 import com.joint.turman.app.base.BaseApplication;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Stack;
 
 /**
