@@ -32,6 +32,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     //用户登录的电话和密码
     private String mUserPhone;
     private String mPassword;
+    private boolean mRememberMe;
 
     private EditText mEdPhone;
     private EditText mEdPassword;
@@ -43,11 +44,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             Status status = response.getResult();
             if (status.getErrorCode() == 1) {
                 Toast.makeText(LoginActivity.this, "登陆成功!", Toast.LENGTH_SHORT).show();
-                ((User)response.getData()).setPassword(mEdPassword.getText().toString());
-                _app.saveUserInfo((User) response.getData());
+                if (mRememberMe) {
+                    ((User) response.getData()).setPassword(mEdPassword.getText().toString());
+                    _app.saveUserInfo((User) response.getData());
+                }
                 TurmanApplication.gotoHome(LoginActivity.this);
-                User user = _app.getUserInfo();
-//                System.out.println("Turman-->>>"+user.getName()+";"+user.getPassword());
+                //User user = _app.getUserInfo();
             } else {
                 Toast.makeText(LoginActivity.this, status.getErrorMessage(),Toast.LENGTH_SHORT).show();
             }
@@ -104,6 +106,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
     private void login(boolean rememberMe){
+        mRememberMe = rememberMe;
         mUserPhone = mEdPhone.getText().toString();
         mPassword = mEdPassword.getText().toString();
         showWaitDialog(R.string.logining);
