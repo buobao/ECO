@@ -3,12 +3,14 @@ package com.joint.turman.app.sys;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.joint.turman.app.activity.home.HomeActivity;
 import com.joint.turman.app.activity.login.LoginActivity;
 import com.joint.turman.app.base.BaseApplication;
+import com.joint.turman.app.entity.User;
 
 import java.util.Stack;
 
@@ -17,6 +19,8 @@ import java.util.Stack;
  */
 public class TurmanApplication extends BaseApplication {
     private Context _context;
+    private SharedPreferences _settings;
+    private SharedPreferences.Editor _editor;
 
     //actvity栈
     private static Stack<Activity> _activityStack = new Stack<Activity>();
@@ -32,6 +36,22 @@ public class TurmanApplication extends BaseApplication {
     protected void init() {
         super.init();
         _context = getApplicationContext();
+        _settings = getSharedPreferences("settings",0);
+        _editor = _settings.edit();
+    }
+
+    public void saveUserInfo(User user){
+        _editor.putString("username", user.getName());
+        _editor.putString("password",user.getPassword());
+        _editor.putString("isLogined","yes");
+        _editor.commit();
+    }
+
+    public User getUserInfo(){
+        User user = new User();
+        user.setName(_settings.getString("username",""));
+        user.setPassword(_settings.getString("password",""));
+        return user;
     }
 
     public static void openActivity(Context context, Class<?> cls,Bundle bundle){

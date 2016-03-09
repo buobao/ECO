@@ -18,6 +18,7 @@ public class User extends BaseEntity {
     private String departmentId;
     private String createDate;
     private String salt;
+    private String password;
 
     public String getPinYinHead() {
         return pinYinHead;
@@ -121,5 +122,13 @@ public class User extends BaseEntity {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

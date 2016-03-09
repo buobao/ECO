@@ -11,8 +11,9 @@ import com.joint.turman.app.R;
 import com.joint.turman.app.base.BaseActivity;
 import com.joint.turman.app.bean.Result;
 import com.joint.turman.app.entity.Status;
+import com.joint.turman.app.entity.User;
 import com.joint.turman.app.entity.callback.UserCallback;
-import com.joint.turman.app.internate.OkHttpUtils;
+import com.joint.turman.app.service.UserService;
 import com.joint.turman.app.sys.TurmanApplication;
 
 import okhttp3.Call;
@@ -35,6 +36,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText mEdPhone;
     private EditText mEdPassword;
 
+    private UserCallback mCallback = new UserCallback() {
+        @Override
+        public void onResponse(Result response) {
+            hideWaitDialog();
+            Status status = response.getResult();
+            if (status.getErrorCode() == 1) {
+                Toast.makeText(LoginActivity.this, "登陆成功!", Toast.LENGTH_SHORT).show();
+                ((User)response.getData()).setPassword(mEdPassword.getText().toString());
+                _app.saveUserInfo((User) response.getData());
+                TurmanApplication.gotoHome(LoginActivity.this);
+                User user = _app.getUserInfo();
+//                System.out.println("Turman-->>>"+user.getName()+";"+user.getPassword());
+            } else {
+                Toast.makeText(LoginActivity.this, status.getErrorMessage(),Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onError(Call call, Exception e) {
+            super.onError(call, e);
+            hideWaitDialog();
+            Toast.makeText(LoginActivity.this, "登陆失败,请与管理员联系!", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     protected void init() {
@@ -66,7 +91,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.act_login_btnLogin:
-                    //TurmanApplication.openActivity(LoginActivity.this, HomeActivity.class, null, true);
                 login(true);
                 break;
             case R.id.act_login_btn_loginQuick:
@@ -86,26 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String deviceId = tm.getDeviceId();
-        Toast.makeText(LoginActivity.this,"sss",Toast.LENGTH_SHORT).show();
-        OkHttpUtils
-                .post()
-                .url("http://cst.9joint-eco.com/ec-web/app/login.action")
-                .addParams("username",mUserPhone)
-                .addParams("password",mPassword)
-                .build()
-                .execute(new UserCallback() {
-                    @Override
-                    public void onResponse(Result response) {
-                        Status status = response.getResult();
-                        System.out.println("Turman-->>>>>>>>>>>"+status.getErrorMessage()+"["+status.getErrorCode()+"]");
-                    }
-
-                    @Override
-                    public void onError(Call call, Exception e) {
-                        super.onError(call, e);
-                    }
-                });
-        hideWaitDialog();
+        UserService.login(mUserPhone, mPassword, deviceId, mCallback);
     }
 
 }

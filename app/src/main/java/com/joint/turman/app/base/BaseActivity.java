@@ -16,6 +16,7 @@ public class BaseActivity extends AppCompatActivity {
 
     private boolean _isVisible;
     private WaitDialog _waitDialog;  //wait dialog
+    protected TurmanApplication _app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void init(){
         setContentView(getLayout());
+        _app = (TurmanApplication)getApplication();
     }
 
     protected int getLayout(){
