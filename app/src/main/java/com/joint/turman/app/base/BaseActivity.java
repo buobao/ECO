@@ -52,6 +52,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         TurmanApplication.popActivity();
+        super.onBackPressed();
     }
 
     public WaitDialog showWaitDialog() {

@@ -1,9 +1,7 @@
 package com.joint.turman.app.activity.home;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.joint.turman.app.R;
+import com.joint.turman.app.activity.common.CommonActivity;
 import com.joint.turman.app.base.BaseActivity;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.drawable.MaterialMenuDrawable;
@@ -186,7 +185,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.leftmenu_myinfo:
-                Toast.makeText(HomeActivity.this,"个人信息",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HomeActivity.this,"个人信息",Toast.LENGTH_SHORT).show();
+                TurmanApplication.openActivity(HomeActivity.this, CommonActivity.class);
                 break;
             case R.id.leftmenu_client:
                 Toast.makeText(HomeActivity.this,"客户信息",Toast.LENGTH_SHORT).show();

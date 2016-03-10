@@ -19,7 +19,6 @@ import java.util.Stack;
  * Created by dqf on 2016/3/3.
  */
 public class TurmanApplication extends BaseApplication {
-    private Context _context;
     private SharedPreferences _settings;
     private SharedPreferences.Editor _editor;
 
@@ -36,7 +35,6 @@ public class TurmanApplication extends BaseApplication {
     @Override
     protected void init() {
         super.init();
-        _context = getApplicationContext();
         _settings = getSharedPreferences("settings",0);
         _editor = _settings.edit();
     }
@@ -48,14 +46,14 @@ public class TurmanApplication extends BaseApplication {
     public void saveUserInfo(User user){
         _editor.putString("username", user.getName());
         _editor.putString("password",user.getPassword());
-        _editor.putString("isLogined","yes");
+        _editor.putString("isLogined", "yes");
 
-        _editor.putString("phone",user.getPhone());
-        _editor.putString("companyName",user.getCompanyName());
-        _editor.putString("companyId",user.getCompanyId());
-        _editor.putString("userId",user.getId());
-        _editor.putString("departmentName",user.getDepartmentName());
-        _editor.putString("departmentId",user.getDepartmentId());
+        _editor.putString("phone", user.getPhone());
+        _editor.putString("companyName", user.getCompanyName());
+        _editor.putString("companyId", user.getCompanyId());
+        _editor.putString("userId", user.getId());
+        _editor.putString("departmentName", user.getDepartmentName());
+        _editor.putString("departmentId", user.getDepartmentId());
         _editor.commit();
     }
 
@@ -67,12 +65,12 @@ public class TurmanApplication extends BaseApplication {
         User user = new User();
         user.setName(_settings.getString("username", ""));
         user.setPassword(_settings.getString("password", ""));
-        user.setPhone(_settings.getString("phone",""));
-        user.setCompanyName(_settings.getString("companyName",""));
-        user.setCompanyId(_settings.getString("companyId",""));
-        user.setId(_settings.getString("userId",""));
-        user.setDepartmentId(_settings.getString("departmentId",""));
-        user.setDepartmentName(_settings.getString("departmentName",""));
+        user.setPhone(_settings.getString("phone", ""));
+        user.setCompanyName(_settings.getString("companyName", ""));
+        user.setCompanyId(_settings.getString("companyId", ""));
+        user.setId(_settings.getString("userId", ""));
+        user.setDepartmentId(_settings.getString("departmentId", ""));
+        user.setDepartmentName(_settings.getString("departmentName", ""));
         return user;
     }
 
@@ -109,8 +107,11 @@ public class TurmanApplication extends BaseApplication {
      * 启动一个activity
      * @param context
      * @param cls
-     * @param bundle
      */
+    public static void openActivity(Context context, Class<?> cls){
+        openActivity(context, cls, null, false);
+    }
+
     public static void openActivity(Context context, Class<?> cls,Bundle bundle){
         openActivity(context, cls, bundle, false);
     }
@@ -143,14 +144,27 @@ public class TurmanApplication extends BaseApplication {
         ((Activity)context).finish();
     }
 
+    //返回上一个activity
+    public static void backLastActivity(Context context){
+        backLastActivity(context,true);
+    }
+
+    public static void backLastActivity(Context context, boolean finishCurrent){
+        Intent intent = new Intent(context,popActivity().getClass());
+        context.startActivity(intent);
+        if (finishCurrent){
+            ((Activity)context).finish();
+        }
+    }
+
     //将activity加入到列表
     public static void putActivity(Activity activity){
         _activityStack.push(activity);
     }
 
     //将制定activity移除
-    public static void popActivity(){
-        _activityStack.pop();
+    public static Activity popActivity(){
+        return _activityStack.pop();
     }
 
     //退出程序

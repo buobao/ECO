@@ -8,4 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--activity主题定义-->
+    <style name="ThemeActivity" mce_bogus="1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!--这里定义所有activity切换的动画-->
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity" mce_bogus="1">
+        <item name="android:activityOpenEnterAnimation">@anim/act_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/act_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/act_backenter</item>
+        <item name="android:activityCloseExitAnimation">@anim/act_backexit</item>
+    </style>
+
 </resources>
