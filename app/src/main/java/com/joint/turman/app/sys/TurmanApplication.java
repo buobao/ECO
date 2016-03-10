@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import com.joint.turman.app.activity.home.HomeActivity;
@@ -40,20 +41,76 @@ public class TurmanApplication extends BaseApplication {
         _editor = _settings.edit();
     }
 
+    /**
+     * 保存用户登录信息
+     * @param user
+     */
     public void saveUserInfo(User user){
         _editor.putString("username", user.getName());
         _editor.putString("password",user.getPassword());
         _editor.putString("isLogined","yes");
+
+        _editor.putString("phone",user.getPhone());
+        _editor.putString("companyName",user.getCompanyName());
+        _editor.putString("companyId",user.getCompanyId());
+        _editor.putString("userId",user.getId());
+        _editor.putString("departmentName",user.getDepartmentName());
+        _editor.putString("departmentId",user.getDepartmentId());
         _editor.commit();
     }
 
+    /**
+     * 获取登录用户信息并保存
+     * @return
+     */
     public User getUserInfo(){
         User user = new User();
-        user.setName(_settings.getString("username",""));
-        user.setPassword(_settings.getString("password",""));
+        user.setName(_settings.getString("username", ""));
+        user.setPassword(_settings.getString("password", ""));
+        user.setPhone(_settings.getString("phone",""));
+        user.setCompanyName(_settings.getString("companyName",""));
+        user.setCompanyId(_settings.getString("companyId",""));
+        user.setId(_settings.getString("userId",""));
+        user.setDepartmentId(_settings.getString("departmentId",""));
+        user.setDepartmentName(_settings.getString("departmentName",""));
         return user;
     }
 
+    /**
+     * 判断用户是否登录过
+     * @return
+     */
+    public boolean isLogined(){
+        String flag = _settings.getString("isLogined","no");
+        if ("yes".equals(flag)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 获取设备ID
+     * @return
+     */
+    public String getDeviceId(){
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        return tm.getDeviceId();
+    }
+
+    /**
+     * 清除用户登录缓存数据
+     */
+    public void clearSettings(){
+        _editor.clear();
+        _editor.commit();
+    }
+
+    /**
+     * 启动一个activity
+     * @param context
+     * @param cls
+     * @param bundle
+     */
     public static void openActivity(Context context, Class<?> cls,Bundle bundle){
         openActivity(context, cls, bundle, false);
     }

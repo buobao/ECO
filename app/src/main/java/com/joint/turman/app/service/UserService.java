@@ -16,7 +16,6 @@ public class UserService extends BaseService {
     }
 
     public static void login(String username, String password, String deviceId, Callback callback){
-        System.out.println("Turman--->>>>>>>>>>>>>>>" + Urls.URL_APP_API_HOST + Urls.LOGIN_VALIDATE_HTTP);
         OkHttpUtils
                 .post()
                 .url(Urls.URL_APP_API_HOST + Urls.LOGIN_VALIDATE_HTTP)

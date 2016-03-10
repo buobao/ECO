@@ -1,7 +1,5 @@
 package com.joint.turman.app.activity.login;
 
-import android.content.Context;
-import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +44,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Toast.makeText(LoginActivity.this, "登陆成功!", Toast.LENGTH_SHORT).show();
                 if (mRememberMe) {
                     ((User) response.getData()).setPassword(mEdPassword.getText().toString());
+                    ((User) response.getData()).setPhone(mEdPhone.getText().toString());
                     _app.saveUserInfo((User) response.getData());
                 }
                 TurmanApplication.gotoHome(LoginActivity.this);
@@ -111,9 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mPassword = mEdPassword.getText().toString();
         showWaitDialog(R.string.logining);
 
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String deviceId = tm.getDeviceId();
-        UserService.login(mUserPhone, mPassword, deviceId, mCallback);
+        UserService.login(mUserPhone, mPassword, _app.getDeviceId(), mCallback);
     }
 
 }

@@ -1,21 +1,28 @@
 package com.joint.turman.app.activity.welcome;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.joint.turman.app.R;
+import com.joint.turman.app.base.BaseActivity;
+import com.joint.turman.app.bean.Result;
+import com.joint.turman.app.entity.Status;
+import com.joint.turman.app.entity.User;
+import com.joint.turman.app.entity.callback.UserCallback;
+import com.joint.turman.app.service.UserService;
 import com.joint.turman.app.sys.TurmanApplication;
+
+import okhttp3.Call;
 
 /**
  * Created by dqf on 2016/3/1.
  */
-public class WelcomeActivity extends Activity implements ViewPager.OnPageChangeListener {
+public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     private ViewPager mViewPager;
     private LinearLayout mShowDot;
     private TextView mStart;
@@ -24,11 +31,36 @@ public class WelcomeActivity extends Activity implements ViewPager.OnPageChangeL
 
     private ImageView[] mImgs;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_welcome);
+    private UserCallback mCallback = new UserCallback() {
+        @Override
+        public void onResponse(Result response) {
+            hideWaitDialog();
+            Status status = response.getResult();
+            if (status.getErrorCode() == 1) {
+                Toast.makeText(WelcomeActivity.this, "登陆成功!", Toast.LENGTH_SHORT).show();
+                TurmanApplication.gotoHome(WelcomeActivity.this);
+            } else {
+                Toast.makeText(WelcomeActivity.this, status.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                TurmanApplication.gotoLogin(WelcomeActivity.this);
+            }
+        }
 
+        @Override
+        public void onError(Call call, Exception e) {
+            super.onError(call, e);
+            hideWaitDialog();
+            Toast.makeText(WelcomeActivity.this, "登陆失败,请与管理员联系!", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    @Override
+    protected int getLayout() {
+        return R.layout.act_welcome;
+    }
+
+    @Override
+    protected void init() {
+        super.init();
         mViewPager = (ViewPager) findViewById(R.id.act_welcome_viewPager);
         mShowDot = (LinearLayout) findViewById(R.id.act_welcome_showDot);
 
@@ -41,11 +73,13 @@ public class WelcomeActivity extends Activity implements ViewPager.OnPageChangeL
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(WelcomeActivity.this, "请登录", Toast.LENGTH_SHORT).show();
-                //这里处理登陆信息，如果有登陆记录信息则直接读取用户信息，并发送登陆请求，成果：跳转到主页面，失败：跳转到登陆页面
-                //如果没有登录信息，则直接跳转到登陆页
-                //以上是自动登录的判断，这里先不考虑自动登录的情况
-                TurmanApplication.gotoLogin(WelcomeActivity.this);
+                User user = _app.getUserInfo();
+                if (_app.isLogined()){
+                    UserService.login(user.getPhone(), user.getPassword(), _app.getDeviceId(), mCallback);
+                    showWaitDialog(R.string.logining);
+                } else {
+                    TurmanApplication.gotoLogin(WelcomeActivity.this);
+                }
             }
         });
 
@@ -76,6 +110,7 @@ public class WelcomeActivity extends Activity implements ViewPager.OnPageChangeL
         //页面切换事件监听
         mViewPager.addOnPageChangeListener(this);
     }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
