@@ -15,7 +15,10 @@ import com.joint.turman.app.activity.home.HomeActivity;
 import com.joint.turman.app.activity.login.LoginActivity;
 import com.joint.turman.app.base.BaseApplication;
 import com.joint.turman.app.entity.User;
+import com.joint.turman.app.utils.HmacSHA256Utils;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -57,7 +60,21 @@ public class TurmanApplication extends BaseApplication {
         _editor.putString("userId", user.getId());
         _editor.putString("departmentName", user.getDepartmentName());
         _editor.putString("departmentId", user.getDepartmentId());
+
+        Map<String, String> params = new LinkedHashMap<>();
+        params.put("uid", user.getAid());
+        params.put("u", user.getName());
+        String digest = HmacSHA256Utils.digest(user.getSalt(), params);
+        _editor.putString("digest",digest);
         _editor.commit();
+    }
+
+    /**
+     * 获取digest
+     * @return
+     */
+    public String getDigest(){
+        return _settings.getString("digest","");
     }
 
     /**
@@ -149,6 +166,10 @@ public class TurmanApplication extends BaseApplication {
             //添加到列表以便退出时关闭
             putActivity((Activity)context);
         }
+    }
+
+    public static void openCommonActivity(Context context, Bundle bundle){
+        openActivity(context, CommonActivity.class, bundle);
     }
 
     //跳转到登录

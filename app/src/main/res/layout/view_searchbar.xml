@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:background="@color/gray"
+    android:gravity="center">
+    <EditText
+        android:id="@+id/frg_list_search_input"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_background"
+        android:layout_marginLeft="5dp"
+        android:drawableLeft="@drawable/tag_search"
+        android:padding="3dp"
+        />
+
+    <TextView
+        android:id="@+id/frg_list_search_btn"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="搜索"
+        />
+</LinearLayout>
