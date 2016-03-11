@@ -17,6 +17,14 @@
     <color name="colorBlue">#FF2277BB</color>
     <color name="colorDarkBlue">#FF385487</color>
 
+    <!--app main color-->
+    <color name="main_blue">#00A2ED</color>
+    <color name="main_green">#40AA53</color>
+    <color name="main_gray">#9A9A9A</color>
+    <color name="main_black">#353535</color>
+    <color name="main_red">#FFFD4B4A</color>
+    <color name="main_purple">#576B95</color>
+
     <!-- 默认主题色 -->
     <color name="base_theme_color">@color/theme_default_500</color>
     <!-- 默认界面背景色 -->

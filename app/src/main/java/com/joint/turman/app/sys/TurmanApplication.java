@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
+import com.joint.turman.app.activity.common.CommonActivity;
+import com.joint.turman.app.activity.common.ContentEnum;
 import com.joint.turman.app.activity.home.HomeActivity;
 import com.joint.turman.app.activity.login.LoginActivity;
 import com.joint.turman.app.base.BaseApplication;
@@ -75,6 +78,16 @@ public class TurmanApplication extends BaseApplication {
     }
 
     /**
+     * 注销当前账号
+     * @param context
+     */
+    public void cancelAccount(Context context){
+        _editor.putString("isLogined", "no");
+        _editor.commit();
+        gotoLogin(context);
+    }
+
+    /**
      * 判断用户是否登录过
      * @return
      */
@@ -93,6 +106,14 @@ public class TurmanApplication extends BaseApplication {
     public String getDeviceId(){
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         return tm.getDeviceId();
+    }
+
+    /**
+     * 是否具有网络访问权限
+     * @return
+     */
+    public boolean hasInternet(){
+        return ((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
     /**
@@ -146,7 +167,7 @@ public class TurmanApplication extends BaseApplication {
 
     //返回上一个activity
     public static void backLastActivity(Context context){
-        backLastActivity(context,true);
+        backLastActivity(context, true);
     }
 
     public static void backLastActivity(Context context, boolean finishCurrent){
@@ -191,4 +212,39 @@ public class TurmanApplication extends BaseApplication {
             exit(context);
         }
     }
+
+    /**
+     * 辅助，依据枚举创建bundle
+     * @param contentEnum
+     * @return
+     */
+    public static Bundle getContentBundle(ContentEnum contentEnum){
+        Bundle bundle = new Bundle();
+        bundle.putInt(CommonActivity.CONTEXT_TITLE, contentEnum.getTitle());
+        bundle.putInt(CommonActivity.CONTEXT_FRAGMENT, contentEnum.getValue());
+        return bundle;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

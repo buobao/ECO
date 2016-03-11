@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_base_background" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_background"
+                android:padding="@dimen/space_8">
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/avatar_size"
+                    android:layout_height="@dimen/avatar_size"
+                    android:layout_marginRight="@dimen/space_8"
+                    android:src="@drawable/ic_default_avatar"
+                    android:scaleType="centerCrop"
+                    android:clickable="false"
+                    android:contentDescription="@null"/>
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:layout_toRightOf="@id/iv_avatar"
+                    android:textColor="@color/main_black"
+                    android:textSize="@dimen/text_size_18" />
+
+                <ImageView
+                    android:id="@+id/iv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_name"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:layout_toRightOf="@id/iv_avatar"
+                    android:contentDescription="@null"
+                    android:src="@drawable/userinfo_icon_male" />
+
+                <Button
+                    android:id="@+id/btn_edit_avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@id/iv_avatar"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_white_selector"
+                    android:text="@string/btn_edit_photo"
+                    android:textColor="@color/button_text_black"
+                    android:textSize="@dimen/text_size_12" />
+
+            </RelativeLayout>
+            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+            <com.joint.turman.customwidget.tableview.TableView
+                android:id="@+id/user_info_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:left_text="@string/field_company_name"
+                app:show_arrow="false"
+                app:table_backgroud_change="false"/>
+            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+            <com.joint.turman.customwidget.tableview.TableView
+                android:id="@+id/user_info_department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:left_text="@string/field_department_name"
+                app:show_arrow="false"
+                app:table_backgroud_change="false"/>
+
+            <com.joint.turman.customwidget.tableview.TableView
+                android:id="@+id/user_info_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                app:left_text="@string/field_user_name"  />
+            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+            <com.joint.turman.customwidget.tableview.TableView
+                android:id="@+id/user_info_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:left_text="@string/field_user_sex"  />
+            <View android:layout_width="match_parent" android:layout_height="1px" android:background="@color/form_divider_color"/>
+            <com.joint.turman.customwidget.tableview.TableView
+                android:id="@+id/user_info_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:left_text="@string/field_user_phone"   />
+
+
+            <Button
+                android:id="@+id/btn_logout"
+                style="@style/button_common_red"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="@string/btn_exit_app" />
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/btn_delete"
+                style="@style/button_common_red"
+                android:layout_margin="@dimen/space_10"
+                android:text="@string/btn_delete_count" />
+        </LinearLayout>
+
+    </ScrollView>
+    <com.joint.turman.app.ui.empty.EmptyLayout
+        android:id="@+id/profile_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+    </com.joint.turman.app.ui.empty.EmptyLayout>
+</RelativeLayout>

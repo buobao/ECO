@@ -32,5 +32,20 @@
     <string name="act_home_bottom_2">当前项目</string>
     <string name="act_home_bottom_3">只是共享</string>
 
+    <!--Error message-->
+    <string name="view_reload">点击屏幕,重新加载</string>
+
+    <!--context page-->
+    <string name="btn_edit_photo">编辑头像</string>
+    <string name="btn_exit_app">退出当前账号</string>
+    <string name="btn_delete_count">删除账号(仅限体验账号)</string>
+
+    <!--fields name-->
+    <string name="field_company_name">企 业</string>
+    <string name="field_department_name">部 门</string>
+    <string name="field_user_name">姓 名</string>
+    <string name="field_user_sex">性 别</string>
+    <string name="field_user_phone">手 机</string>
+
 
 </resources>

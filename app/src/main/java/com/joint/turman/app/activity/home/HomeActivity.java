@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.CommonActivity;
+import com.joint.turman.app.activity.common.ContentEnum;
 import com.joint.turman.app.base.BaseActivity;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.drawable.MaterialMenuDrawable;
@@ -186,7 +187,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.leftmenu_myinfo:
                 //Toast.makeText(HomeActivity.this,"个人信息",Toast.LENGTH_SHORT).show();
-                TurmanApplication.openActivity(HomeActivity.this, CommonActivity.class);
+                TurmanApplication.openActivity(HomeActivity.this, CommonActivity.class, TurmanApplication.getContentBundle(ContentEnum.PROFILE));
                 break;
             case R.id.leftmenu_client:
                 Toast.makeText(HomeActivity.this,"客户信息",Toast.LENGTH_SHORT).show();
