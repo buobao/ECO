@@ -2,12 +2,14 @@ package com.joint.turman.app.activity.common;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.fragments.contexts.ProfileFragment;
+import com.joint.turman.app.activity.common.fragments.lists.ClientListFragment;
 
 /**
  * Created by dqf on 2016/3/11.
  */
 public enum ContentEnum {
-    PROFILE(0, R.string.act_home_profile ,ProfileFragment.class);
+    PROFILE(0, R.string.act_home_profile ,ProfileFragment.class),
+    CLIENT(1,R.string.act_home_client_info, ClientListFragment.class);
 
     private int title;
     private Class<?> clz;

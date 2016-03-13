@@ -7,4 +7,5 @@ import com.joint.turman.app.entity.Client;
  * Created by dqf on 2016/3/11.
  */
 public class ClientListFragment extends BaseListFragment<Client> {
+
 }

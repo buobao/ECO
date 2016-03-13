@@ -1,8 +1,10 @@
 package com.joint.turman.app.ui.search;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,6 +44,7 @@ public class SearchBar extends LinearLayout implements View.OnClickListener {
         mSearchContext = (EditText) view.findViewById(R.id.frg_list_search_input);
         mSearchBtn = (TextView) view.findViewById(R.id.frg_list_search_btn);
         mSearchBtn.setOnClickListener(this);
+        setOrientation(VERTICAL);
         addView(view);
     }
 
