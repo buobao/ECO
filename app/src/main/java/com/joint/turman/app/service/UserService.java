@@ -18,8 +18,8 @@ public class UserService extends BaseService {
     public static void login(String username, String password, String deviceId, Callback callback){
         OkHttpUtils
                 .post()
-                .url(Urls.URL_APP_API_HOST + Urls.LOGIN_VALIDATE_HTTP)
-                .addParams("username",username)
+                .url(setUrl(Urls.LOGIN_VALIDATE_HTTP))
+                .addParams("username", username)
                 .addParams("password",password)
                 .addParams("deviceId",deviceId)
                 .build()

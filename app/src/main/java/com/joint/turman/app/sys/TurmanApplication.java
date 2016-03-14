@@ -63,7 +63,7 @@ public class TurmanApplication extends BaseApplication {
 
         Map<String, String> params = new LinkedHashMap<>();
         params.put("uid", user.getAid());
-        params.put("u", user.getName());
+        params.put("u", user.getPhone());
         String digest = HmacSHA256Utils.digest(user.getSalt(), params);
         _editor.putString("digest",digest);
         _editor.commit();

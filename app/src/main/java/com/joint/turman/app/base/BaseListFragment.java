@@ -14,20 +14,24 @@ import java.util.List;
 /**
  * Created by dqf on 2016/3/11.
  */
-public abstract class BaseListFragment<T extends BaseEntity> extends BaseFragment {
+public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapter> extends BaseFragment {
 
     protected List<T> entityList;
+    protected A adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frg_base_list, container, false);
+        View view = inflater.inflate(getLayout(), container, false);
         initViews(view);
         return view;
     }
 
+    protected int getLayout(){
+        return R.layout.frg_base_list;
+    }
+
     protected void initViews(View view){
         setHasOptionsMenu(true);
-
     }
 }
