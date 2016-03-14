@@ -69,7 +69,8 @@ public class ClientListFragment extends BaseListFragment<Client,ClientAdapter> {
             public void run() {
                 Map<String, Object> map = new HashMap<String, Object>();
                 map.put("pageNum",1);
-                map.put("pageSize",10);
+                map.put("pageSize",2);
+                map.put("catalog",1);
                 ClientService.getList(map,callback);
             }
         }).start();

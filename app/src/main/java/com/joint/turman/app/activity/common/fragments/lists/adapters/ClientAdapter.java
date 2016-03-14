@@ -41,7 +41,7 @@ public class ClientAdapter extends ListAdapter<Client> {
             view.setTag(holder);
         }
         holder.title.setText(mDataList.get(position).getName());
-        holder.other_title.setText(mDataList.get(position).getSubName());
+        holder.other_title.setText(mDataList.get(position).getTypeName());
         //目前后台未返回该数据
         holder.user.setText("default");
         holder.date.setText("2016-03-13");
