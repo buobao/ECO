@@ -23,6 +23,8 @@ public class SimpleListView extends ListView {
     private TextView mFootText;
     private ProgressBar mFootProgress;
 
+//    private LinearLayout mHead;
+
     public SimpleListView(Context context) {
         super(context);
         initView();
@@ -38,6 +40,9 @@ public class SimpleListView extends ListView {
         this.addFooterView(mFoot);
         mFootText = (TextView) mFoot.findViewById(R.id.listview_foot_load_more);
         mFootProgress = (ProgressBar) mFoot.findViewById(R.id.listview_foot_loading);
+
+//        mHead = (LinearLayout) View.inflate(getContext(), R.layout.listview_head, null);
+//        this.addHeaderView(mHead);
     }
 
     public void updateFoot(int flag){

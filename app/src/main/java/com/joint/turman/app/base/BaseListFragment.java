@@ -16,6 +16,7 @@ import com.joint.turman.app.entity.BaseEntity;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.listview.SimpleListView;
 import com.joint.turman.app.ui.search.SearchBar;
+import com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -36,6 +37,8 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     protected LinkedList<T> entityList = null;
     protected int pageIndex;
     protected A adapter;
+
+    protected CircleRefreshLayout mRefreshLayout;
     protected LinearLayout loading_layout;
     protected SimpleListView mListView;
     protected TextView mErrorMessage;
@@ -76,6 +79,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
         loading_layout = (LinearLayout) view.findViewById(R.id.frg_loading);
+        mRefreshLayout = (CircleRefreshLayout) view.findViewById(R.id.frg_refresh_layout);
         mListView = (SimpleListView) view.findViewById(R.id.frg_list);
         mErrorMessage = (TextView) view.findViewById(R.id.frm_error_message);
         pageIndex = 1;
@@ -104,7 +108,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                lastItemIndex = firstVisibleItem + visibleItemCount - 1;
+                lastItemIndex = firstVisibleItem + visibleItemCount - 2;
             }
         });
 
