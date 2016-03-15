@@ -50,6 +50,7 @@ public class WelcomeActivity extends BaseActivity implements ViewPager.OnPageCha
             super.onError(call, e);
             hideWaitDialog();
             Toast.makeText(WelcomeActivity.this, "登陆失败,请与管理员联系!", Toast.LENGTH_SHORT).show();
+            TurmanApplication.gotoLogin(WelcomeActivity.this);
         }
     };
 

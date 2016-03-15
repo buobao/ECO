@@ -14,7 +14,8 @@ public class Urls implements Serializable {
     private final static String URL_SPLITTER = "/";
     private final static String URL_UNDERLINE = "_";
 
-    public final static String HOST = "cst.9joint-eco.com";
+//    public final static String HOST = "cst.9joint-eco.com";
+    public final static String HOST = "10.10.11.24:8089";
 
     private final static String PROJECTNAME = "ec-web";
     private final static String NAMESPACE_APP = "app";

@@ -16,13 +16,6 @@ import java.util.LinkedList;
  * Created by Administrator on 2016/3/13.
  */
 public class ClientAdapter extends ListAdapter<Client> {
-
-    private TextView title;
-    private TextView other_title;
-    private ImageView photo;
-    private TextView user;
-    private TextView date;
-
     public ClientAdapter(LinkedList<Client> data, Context context) {
         super(data, context);
     }

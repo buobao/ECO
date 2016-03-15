@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.entity.BaseEntity;
+import com.joint.turman.app.ui.search.SearchBar;
 
 import java.util.LinkedList;
 
@@ -21,9 +22,13 @@ import java.util.LinkedList;
  * Created by dqf on 2016/3/11.
  */
 public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapter> extends BaseFragment {
+    public static int INIT_LOADING = 0x01;
+    public static int PAGE_LOADING = 0x02;
+
+    protected SearchBar mSearchBar;
 
     protected LinkedList<T> entityList = null;
-    protected int pageNum;
+    protected int pageIndex;
     protected A adapter;
     protected LinearLayout loading_layout;
     protected ListView mListView;
@@ -44,6 +49,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
                     adapter.notifyDataSetChanged();
                     break;
             }
+            pageIndex++;
         }
     };
 
@@ -58,7 +64,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         loading_layout = (LinearLayout) view.findViewById(R.id.frg_loading);
         mListView = (ListView) view.findViewById(R.id.frg_list);
         mErrorMessage = (TextView) view.findViewById(R.id.frm_error_message);
-        pageNum = 1;
+        pageIndex = 1;
         initViews(view);
         return view;
     }
@@ -79,9 +85,13 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                lastItemIndex = firstVisibleItem + visibleItemCount - 1;
+                lastItemIndex = firstVisibleItem + visibleItemCount;
             }
         });
+        //初始化加载数据
+        loadData();
+        //显示加载布局
+        showLoading();
     }
 
     protected void loadData() {

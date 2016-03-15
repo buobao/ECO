@@ -96,6 +96,7 @@
     <color name="list_divider_color">@color/base_divider_color</color>
     <color name="list_item_background_normal">@color/base_item_bg_color_default</color>
     <color name="list_item_background_pressed">@color/base_item_bg_color_pressed</color>
+    <color name="list_text_color">#5E5E5E</color>
 
     <color name="listitem_transparent">@color/transparent</color>
     <color name="listitem_black">@color/colorDark</color>

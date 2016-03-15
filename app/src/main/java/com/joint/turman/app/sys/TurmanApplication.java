@@ -254,17 +254,21 @@ public class TurmanApplication extends BaseApplication {
         return bundle;
     }
 
+    /**
+     * 获取每页显示数据条目数（有bug，待修正）
+     * @return
+     */
     public static int getPageSize(){
-        if (_pageSize == -1){
-            if (isTablet()){
-                _pageSize = 50;
-            } else if(hasBigScreen()) {
-                _pageSize = 20;
-            } else {
-                _pageSize=10;
-            }
-        }
-        return _pageSize;
+//        if (_pageSize == -1){
+//            if (isTablet()){
+//                _pageSize = 50;
+//            } else if(hasBigScreen()) {
+//                _pageSize = 20;
+//            } else {
+//                _pageSize=10;
+//            }
+//        }
+        return 20;
     }
 
 

@@ -1,6 +1,7 @@
 package com.joint.turman.app.activity.home;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -183,14 +184,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Bundle bundle = null;
         switch (v.getId()) {
             case R.id.leftmenu_myinfo:
                 //Toast.makeText(HomeActivity.this,"个人信息",Toast.LENGTH_SHORT).show();
-                TurmanApplication.openCommonActivity(HomeActivity.this, TurmanApplication.getContentBundle(ContentEnum.PROFILE));
+                bundle = TurmanApplication.getContentBundle(ContentEnum.PROFILE);
                 break;
             case R.id.leftmenu_client:
                 //Toast.makeText(HomeActivity.this,"客户信息",Toast.LENGTH_SHORT).show();
-                TurmanApplication.openCommonActivity(HomeActivity.this,TurmanApplication.getContentBundle(ContentEnum.CLIENT));
+                bundle = TurmanApplication.getContentBundle(ContentEnum.CLIENT);
                 break;
             case R.id.leftmenu_linkman:
                 Toast.makeText(HomeActivity.this,"联系人信息",Toast.LENGTH_SHORT).show();
@@ -202,7 +204,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(HomeActivity.this,"签到信息",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.leftmenu_feedback:
-                Toast.makeText(HomeActivity.this,"反馈信息",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(HomeActivity.this,"反馈信息",Toast.LENGTH_SHORT).show();
+                bundle = TurmanApplication.getContentBundle(ContentEnum.PROBACK);
                 break;
             case R.id.leftmenu_communication:
                 Toast.makeText(HomeActivity.this,"交流信息",Toast.LENGTH_SHORT).show();
@@ -214,6 +217,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(HomeActivity.this,"系统设置",Toast.LENGTH_SHORT).show();
                 break;
         }
+        TurmanApplication.openCommonActivity(HomeActivity.this, bundle);
     }
 
     @Override

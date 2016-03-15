@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/listitem_black"
+            android:textColor="@color/list_text_color"
             android:text="这里是标题"
             />
         <TextView
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space_20"
-            android:textColor="@color/listitem_black"
+            android:textColor="@color/list_text_color"
             android:text="[附加信息]"
             android:textSize="12sp"
             />
@@ -48,7 +48,7 @@
             android:layout_toRightOf="@+id/item_list_normal_img"
             android:textSize="12sp"
             android:layout_marginLeft="5dp"
-            android:textColor="@color/listitem_black"
+            android:textColor="@color/list_text_color"
             />
         <TextView
             android:id="@+id/item_list_normal_date"
@@ -58,7 +58,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:textSize="12sp"
-            android:textColor="@color/listitem_black"
+            android:textColor="@color/list_text_color"
             />
     </RelativeLayout>
 
