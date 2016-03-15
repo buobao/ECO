@@ -8,12 +8,9 @@ import com.joint.turman.app.entity.ListEntity;
 import com.joint.turman.app.entity.Status;
 import com.joint.turman.app.entity.callback.ClientListCallback;
 import com.joint.turman.app.service.ClientService;
-import com.joint.turman.app.sys.TurmanApplication;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.Call;
 
@@ -41,6 +38,8 @@ public class ClientListFragment extends BaseListFragment<Client,ClientAdapter> {
                         entityList.addAll(list);
                         mhandler.sendEmptyMessage(PAGE_LOADING);
                     }
+                } else {
+                    mhandler.sendEmptyMessage(NO_LOADING);
                 }
             }
         }
@@ -53,14 +52,12 @@ public class ClientListFragment extends BaseListFragment<Client,ClientAdapter> {
 
     @Override
     protected void loadData() {
+        super.loadData();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Map<String, Object> map = new HashMap<String, Object>();
-                map.put("pageIndex",pageIndex);
-                map.put("pageSize", TurmanApplication.getPageSize());
-                //map.put("catalog",1);
-                ClientService.getList(map,callback);
+                //params.put("catalog",1);
+                ClientService.getList(params,callback);
             }
         }).start();
     }

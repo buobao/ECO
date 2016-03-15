@@ -10,12 +10,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/frg_search"/>
-    <ListView
+
+    <com.joint.turman.app.ui.listview.SimpleListView
+        android:id="@+id/frg_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/frg_list"
-        android:visibility="gone">
-    </ListView>
+        android:visibility="gone"/>
 
     <include android:id="@+id/frg_loading"
         layout="@layout/loading_data" />

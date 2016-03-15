@@ -40,6 +40,10 @@
     <color name="menu_verdant">#4bbcd4</color>
     <color name="menu_purple">#aa75f3</color>
 
+    <!--list-->
+    <color name="list_text_color">#5E5E5E</color>
+    <color name="list_more_color">#aaaaaa</color>
+
     <!--切换页标签颜色-->
     <color name="tab_blue">#00A2ED</color>
     <color name="tab_green">#40AA53</color>

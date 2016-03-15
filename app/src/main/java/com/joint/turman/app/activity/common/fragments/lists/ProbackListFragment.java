@@ -8,12 +8,9 @@ import com.joint.turman.app.entity.Proback;
 import com.joint.turman.app.entity.Status;
 import com.joint.turman.app.entity.callback.ProbackListCallback;
 import com.joint.turman.app.service.ProbackService;
-import com.joint.turman.app.sys.TurmanApplication;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.Call;
 
@@ -41,6 +38,8 @@ public class ProbackListFragment extends BaseListFragment<Proback, ProbackAdapte
                         entityList.addAll(list);
                         mhandler.sendEmptyMessage(PAGE_LOADING);
                     }
+                } else {
+                    mhandler.sendEmptyMessage(NO_LOADING);
                 }
             }
         }
@@ -53,14 +52,11 @@ public class ProbackListFragment extends BaseListFragment<Proback, ProbackAdapte
 
     @Override
     protected void loadData() {
+        super.loadData();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Map<String, Object> map = new HashMap<String, Object>();
-                map.put("pageIndex",pageIndex);
-                map.put("pageSize", TurmanApplication.getPageSize());
-                //map.put("catalog",1);
-                ProbackService.getList(map, callback);
+                ProbackService.getList(params, callback);
             }
         }).start();
     }
