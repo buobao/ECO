@@ -69,10 +69,12 @@ public class AnimationView extends View {
 
     public AnimationView(Context context) {
         super(context, null, 0);
+        initView(context, null,0);
     }
 
     public AnimationView(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
+        initView(context, attrs,0);
     }
 
     public AnimationView(Context context, AttributeSet attrs, int defStyleAttr) {
