@@ -1,5 +1,6 @@
 package com.joint.turman.app.service;
 
+import com.joint.turman.app.entity.Client;
 import com.joint.turman.app.internate.OkHttpUtils;
 import com.joint.turman.app.internate.Urls;
 import com.joint.turman.app.internate.builder.GetBuilder;
@@ -10,7 +11,7 @@ import java.util.Map;
 /**
  * Created by dqf on 2016/3/14.
  */
-public class ClientService extends BaseService {
+public class ClientService extends BaseService<Client> {
 
     /**
      * 用户信息列表读取

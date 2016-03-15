@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.joint.turman.app.activity.common.CommonActivity;
@@ -32,7 +34,13 @@ public class TurmanApplication extends BaseApplication {
     private static Stack<Activity> _activityStack = new Stack<Activity>();
     //记录返回按钮时间
     private static long _lastPressTime = 0;
+    //每页显示数据的条数
+    private static int _pageSize;
+    //是否大屏
+    private static Boolean _isTablet = null;
+    private static Boolean _hasBigScreen = null;
 
+    public static float displayDensity = 0.0F;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -244,6 +252,71 @@ public class TurmanApplication extends BaseApplication {
         bundle.putInt(CommonActivity.CONTEXT_TITLE, contentEnum.getTitle());
         bundle.putInt(CommonActivity.CONTEXT_FRAGMENT, contentEnum.getValue());
         return bundle;
+    }
+
+    public static int getPageSize(){
+        if (_pageSize == -1){
+            if (isTablet()){
+                _pageSize = 50;
+            } else if(hasBigScreen()) {
+                _pageSize = 20;
+            } else {
+                _pageSize=10;
+            }
+        }
+        return _pageSize;
+    }
+
+
+    /**
+     * 判断是否为大屏显示
+     * @return
+     */
+    public static boolean isTablet(){
+        if (_isTablet == null){
+            boolean flag;
+            if ((0xf & _context.getResources().getConfiguration().screenLayout) >= 3){
+                flag = true;
+            } else {
+                flag = false;
+            }
+            _isTablet = Boolean.valueOf(false);
+        }
+        return _isTablet.booleanValue();
+    }
+
+    public static boolean hasBigScreen() {
+        boolean flag = true;
+        if (_hasBigScreen == null) {
+            boolean flag1;
+            if ((0xf & BaseApplication.context().getResources()
+                    .getConfiguration().screenLayout) >= 3)
+                flag1 = flag;
+            else
+                flag1 = false;
+            Boolean boolean1 = Boolean.valueOf(flag1);
+            _hasBigScreen = boolean1;
+            if (!boolean1.booleanValue()) {
+                if (getDensity() <= 1.5F)
+                    flag = false;
+                _hasBigScreen = Boolean.valueOf(flag);
+            }
+        }
+        return _hasBigScreen.booleanValue();
+    }
+
+    public static float getDensity() {
+        if (displayDensity == 0.0)
+            displayDensity = getDisplayMetrics().density;
+        return displayDensity;
+    }
+
+    public static DisplayMetrics getDisplayMetrics() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        ((WindowManager) _context.getSystemService(
+                Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(
+                displaymetrics);
+        return displaymetrics;
     }
 
 }

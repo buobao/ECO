@@ -1,28 +1,64 @@
 package com.joint.turman.app.base;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.entity.BaseEntity;
 
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Created by dqf on 2016/3/11.
  */
 public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapter> extends BaseFragment {
 
-    protected List<T> entityList;
+    protected LinkedList<T> entityList = null;
+    protected int pageNum;
     protected A adapter;
+    protected LinearLayout loading_layout;
+    protected ListView mListView;
+    protected TextView mErrorMessage;
+
+    protected int lastItemIndex;
+
+    protected Handler mhandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 0x01:
+                    adapter = getAdapter();
+                    mListView.setAdapter(adapter);
+                    hideLoading(entityList != null);
+                    break;
+                case 0x02:
+                    adapter.notifyDataSetChanged();
+                    break;
+            }
+        }
+    };
+
+    protected A getAdapter(){
+        return null;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
+        loading_layout = (LinearLayout) view.findViewById(R.id.frg_loading);
+        mListView = (ListView) view.findViewById(R.id.frg_list);
+        mErrorMessage = (TextView) view.findViewById(R.id.frm_error_message);
+        pageNum = 1;
         initViews(view);
         return view;
     }
@@ -33,5 +69,37 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
 
     protected void initViews(View view){
         setHasOptionsMenu(true);
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (lastItemIndex == adapter.getCount() && scrollState == SCROLL_STATE_IDLE){
+                    loadData();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                lastItemIndex = firstVisibleItem + visibleItemCount - 1;
+            }
+        });
+    }
+
+    protected void loadData() {
+
+    }
+
+    protected void showLoading(){
+        mListView.setVisibility(View.GONE);
+        loading_layout.setVisibility(View.VISIBLE);
+        mErrorMessage.setVisibility(View.GONE);
+    }
+
+    protected void hideLoading(boolean flag){
+        loading_layout.setVisibility(View.GONE);
+        if (flag) {
+            mListView.setVisibility(View.VISIBLE);
+        } else {
+            mErrorMessage.setVisibility(View.VISIBLE);
+        }
     }
 }
