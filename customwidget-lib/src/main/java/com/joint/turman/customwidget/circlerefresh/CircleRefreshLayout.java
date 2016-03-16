@@ -191,6 +191,7 @@ public class CircleRefreshLayout extends FrameLayout {
         return super.onInterceptTouchEvent(ev);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (mIsRefreshing) {

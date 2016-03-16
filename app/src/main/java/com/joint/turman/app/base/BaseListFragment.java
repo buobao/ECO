@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Created by dqf on 2016/3/11.
  */
-public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapter> extends BaseFragment {
+public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapter> extends BaseFragment{
     public static int INIT_LOADING = 0x01;
     public static int PAGE_LOADING = 0x02;
     public static int NO_LOADING = 0x03;
@@ -43,6 +43,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     protected SimpleListView mListView;
     protected TextView mErrorMessage;
 
+    protected boolean isReload = false;
     protected int lastItemIndex;
 
     protected Handler mhandler = new Handler(){
@@ -50,15 +51,20 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 0x01:
-                    adapter = getAdapter();
-                    mListView.setAdapter(adapter);
-                    hideLoading(entityList != null);
-                    params.put("pageIndex", ++pageIndex);
+                    if (!isReload) {
+                        adapter = getAdapter();
+                        mListView.setAdapter(adapter);
+                        hideLoading(entityList != null);
+                    } else {
+                        adapter.notifyDataSetChanged();
+                        mRefreshLayout.finishRefreshing();
+                    }
+                    pageIndex++;
                     break;
                 case 0x02:
                     adapter.notifyDataSetChanged();
                     mListView.updateFoot(SimpleListView.LOADING_MORE);
-                    params.put("pageIndex", ++pageIndex);
+                    pageIndex++;
                     break;
                 case 0x03:
                     mListView.updateFoot(SimpleListView.LOADING_NO_MORE);
@@ -69,6 +75,11 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
 
     protected abstract A getAdapter();
     protected void loadData(){
+        //初始查询条件
+        if (params == null)
+            params = new HashMap<String, Object>();
+        params.put("pageIndex",pageIndex);
+        params.put("pageSize", TurmanApplication.getPageSize());
         if (pageIndex > 1){
             mListView.updateFoot(SimpleListView.LOADING);
         }
@@ -83,10 +94,6 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         mListView = (SimpleListView) view.findViewById(R.id.frg_list);
         mErrorMessage = (TextView) view.findViewById(R.id.frm_error_message);
         pageIndex = 1;
-        //初始查询条件
-        params = new HashMap<String, Object>();
-        params.put("pageIndex",pageIndex);
-        params.put("pageSize", TurmanApplication.getPageSize());
 
         initViews(view);
         return view;
@@ -108,7 +115,23 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                lastItemIndex = firstVisibleItem + visibleItemCount - 2;
+                lastItemIndex = firstVisibleItem + visibleItemCount - 1;
+            }
+        });
+
+        //下拉刷新事件
+        mRefreshLayout.setOnRefreshListener(new CircleRefreshLayout.OnCircleRefreshListener() {
+            @Override
+            public void completeRefresh() {
+                isReload = false;
+            }
+
+            @Override
+            public void refreshing() {
+                entityList = null;
+                pageIndex = 1;
+                isReload = true;
+                loadData();
             }
         });
 
@@ -132,4 +155,6 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
             mErrorMessage.setVisibility(View.VISIBLE);
         }
     }
+
+
 }

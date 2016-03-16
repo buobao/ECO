@@ -13,7 +13,7 @@
 
     <com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:AniBackColor="#ff8b90af"
+        app:AniBackColor="@color/gray"
         app:AniForeColor="#ffffffff"
         app:CircleSmaller="6"
         android:id="@+id/frg_refresh_layout"
