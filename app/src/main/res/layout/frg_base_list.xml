@@ -11,21 +11,26 @@
     android:layout_height="wrap_content"
     android:id="@+id/frg_search"/>
 
-    <com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:AniBackColor="@color/gray"
-        app:AniForeColor="#ffffffff"
-        app:CircleSmaller="6"
-        android:id="@+id/frg_refresh_layout"
+    <!--<com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--app:AniBackColor="@color/gray"-->
+        <!--app:AniForeColor="#ffffffff"-->
+        <!--app:CircleSmaller="6"-->
+        <!--android:id="@+id/frg_refresh_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+    <!--</com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout>-->
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:id="@+id/frg_refresh_layout"
+        android:visibility="gone">
         <com.joint.turman.app.ui.listview.SimpleListView
             android:id="@+id/frg_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-    </com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout>
 
     <include android:id="@+id/frg_loading"
         layout="@layout/loading_data" />

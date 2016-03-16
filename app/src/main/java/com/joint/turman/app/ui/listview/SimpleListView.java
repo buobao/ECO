@@ -45,6 +45,10 @@ public class SimpleListView extends ListView {
 //        this.addHeaderView(mHead);
     }
 
+    public void resetFoot(){
+        updateFoot(LOADING_MORE);
+    }
+
     public void updateFoot(int flag){
         switch (flag) {
             case LOADING:

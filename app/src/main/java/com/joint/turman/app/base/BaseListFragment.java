@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,6 @@ import com.joint.turman.app.entity.BaseEntity;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.listview.SimpleListView;
 import com.joint.turman.app.ui.search.SearchBar;
-import com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -38,7 +38,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     protected int pageIndex;
     protected A adapter;
 
-    protected CircleRefreshLayout mRefreshLayout;
+    protected SwipeRefreshLayout mRefreshLayout;
     protected LinearLayout loading_layout;
     protected SimpleListView mListView;
     protected TextView mErrorMessage;
@@ -58,7 +58,8 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
                     if (!isReload) {
                         hideLoading(entityList != null);
                     } else {
-                        mRefreshLayout.finishRefreshing();
+                        mRefreshLayout.setRefreshing(false);
+                        isReload = false;
                     }
                     pageIndex++;
                     break;
@@ -69,6 +70,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
                     break;
                 case 0x03:
                     mListView.updateFoot(SimpleListView.LOADING_NO_MORE);
+                    allLoaded = true;
                     break;
             }
         }
@@ -90,6 +92,11 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         params.put("pageSize", TurmanApplication.getPageSize());
         if (pageIndex > 1){
             mListView.updateFoot(SimpleListView.LOADING);
+        } else {
+            if (!isReload) {
+                //显示加载布局
+                showLoading();
+            }
         }
     }
 
@@ -98,7 +105,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
         loading_layout = (LinearLayout) view.findViewById(R.id.frg_loading);
-        mRefreshLayout = (CircleRefreshLayout) view.findViewById(R.id.frg_refresh_layout);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frg_refresh_layout);
         mListView = (SimpleListView) view.findViewById(R.id.frg_list);
         mErrorMessage = (TextView) view.findViewById(R.id.frm_error_message);
         pageIndex = 1;
@@ -127,31 +134,24 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
             }
         });
 
-        //下拉刷新事件
-        mRefreshLayout.setOnRefreshListener(new CircleRefreshLayout.OnCircleRefreshListener() {
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void completeRefresh() {
-                isReload = false;
-            }
-
-            @Override
-            public void refreshing() {
+            public void onRefresh() {
                 entityList = null;
                 pageIndex = 1;
                 isReload = true;
                 allLoaded = false;
+                mListView.resetFoot();
                 loadData();
             }
         });
 
         //初始化加载数据
         loadData();
-        //显示加载布局
-        showLoading();
     }
 
     protected void showLoading(){
-        mListView.setVisibility(View.GONE);
+        mRefreshLayout.setVisibility(View.GONE);
         loading_layout.setVisibility(View.VISIBLE);
         mErrorMessage.setVisibility(View.GONE);
     }
@@ -159,7 +159,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     protected void hideLoading(boolean flag){
         loading_layout.setVisibility(View.GONE);
         if (flag) {
-            mListView.setVisibility(View.VISIBLE);
+            mRefreshLayout.setVisibility(View.VISIBLE);
         } else {
             mErrorMessage.setVisibility(View.VISIBLE);
         }
