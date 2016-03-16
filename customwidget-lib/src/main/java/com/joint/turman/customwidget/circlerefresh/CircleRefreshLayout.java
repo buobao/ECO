@@ -205,7 +205,6 @@ public class CircleRefreshLayout extends FrameLayout {
                 dy = Math.min(mPullHeight * 2, dy);
                 dy = Math.max(0, dy);
 
-
                 if (mChildView != null) {
                     float offsetY = decelerateInterpolator.getInterpolation(dy / 2 / mPullHeight) * dy / 2;
                     mChildView.setTranslationY(offsetY);
@@ -213,10 +212,7 @@ public class CircleRefreshLayout extends FrameLayout {
                     mHeader.getLayoutParams().height = (int) offsetY;
                     mHeader.requestLayout();
                 }
-
-
                 return true;
-
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 if (mChildView != null) {
@@ -227,7 +223,6 @@ public class CircleRefreshLayout extends FrameLayout {
                         if (onCircleRefreshListener!=null) {
                             onCircleRefreshListener.refreshing();
                         }
-
                     } else {
                         float height = mChildView.getTranslationY();
                         ValueAnimator backTopAni = ValueAnimator.ofFloat(height, 0);

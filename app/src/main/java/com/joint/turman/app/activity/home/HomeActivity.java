@@ -195,7 +195,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 bundle = TurmanApplication.getContentBundle(ContentEnum.CLIENT);
                 break;
             case R.id.leftmenu_linkman:
-                Toast.makeText(HomeActivity.this,"联系人信息",Toast.LENGTH_SHORT).show();
+                bundle = TurmanApplication.getContentBundle(ContentEnum.LINKMAN);
                 break;
             case R.id.leftmenu_project:
                 Toast.makeText(HomeActivity.this,"项目信息",Toast.LENGTH_SHORT).show();
@@ -204,17 +204,16 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(HomeActivity.this,"签到信息",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.leftmenu_feedback:
-                //Toast.makeText(HomeActivity.this,"反馈信息",Toast.LENGTH_SHORT).show();
                 bundle = TurmanApplication.getContentBundle(ContentEnum.PROBACK);
                 break;
             case R.id.leftmenu_communication:
-                Toast.makeText(HomeActivity.this,"交流信息",Toast.LENGTH_SHORT).show();
+                bundle = TurmanApplication.getContentBundle(ContentEnum.COMMENT);
                 break;
             case R.id.leftmenu_notice:
-                Toast.makeText(HomeActivity.this,"交流信息",Toast.LENGTH_SHORT).show();
+                bundle = TurmanApplication.getContentBundle(ContentEnum.ANNOUNCE);
                 break;
             case R.id.leftmenu_setting:
-                Toast.makeText(HomeActivity.this,"系统设置",Toast.LENGTH_SHORT).show();
+                bundle = TurmanApplication.getContentBundle(ContentEnum.SETTING);
                 break;
         }
         TurmanApplication.openCommonActivity(HomeActivity.this, bundle);

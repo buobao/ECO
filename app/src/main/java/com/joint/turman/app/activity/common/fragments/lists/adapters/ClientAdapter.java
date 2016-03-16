@@ -2,12 +2,8 @@ package com.joint.turman.app.activity.common.fragments.lists.adapters;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.joint.turman.app.R;
 import com.joint.turman.app.base.ListAdapter;
-import com.joint.turman.app.bean.Holder;
 import com.joint.turman.app.entity.Client;
 
 import java.util.LinkedList;
@@ -23,16 +19,6 @@ public class ClientAdapter extends ListAdapter<Client> {
     @Override
     protected void initView(View view, int position) {
         super.initView(view, position);
-        Holder holder = (Holder) view.getTag();
-        if (holder == null) {
-            holder = new Holder();
-            holder.title = (TextView) view.findViewById(R.id.item_list_normal_titla);
-            holder.other_title = (TextView) view.findViewById(R.id.item_list_normal_title_other);
-            holder.photo = (ImageView) view.findViewById(R.id.item_list_normal_img);
-            holder.user = (TextView) view.findViewById(R.id.item_list_normal_name);
-            holder.date = (TextView) view.findViewById(R.id.item_list_normal_date);
-            view.setTag(holder);
-        }
         holder.title.setText(mDataList.get(position).getName());
         holder.other_title.setText(mDataList.get(position).getTypeName());
         //目前后台未返回该数据

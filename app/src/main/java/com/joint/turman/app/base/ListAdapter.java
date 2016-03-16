@@ -9,12 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.joint.turman.app.R;
+import com.joint.turman.app.bean.Holder;
 import com.joint.turman.app.entity.BaseEntity;
 
-import org.w3c.dom.Text;
-
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2016/3/12.
@@ -22,6 +20,7 @@ import java.util.List;
 public class ListAdapter<T extends BaseEntity> extends BaseAdapter {
     protected LinkedList<T> mDataList;
     protected Context mContext;
+    protected Holder holder;
 
 
 
@@ -59,6 +58,16 @@ public class ListAdapter<T extends BaseEntity> extends BaseAdapter {
 
     protected void initView(View view, int position){
         //初始化item内容
+        holder = (Holder) view.getTag();
+        if (holder == null) {
+            holder = new Holder();
+            holder.title = (TextView) view.findViewById(R.id.item_list_normal_titla);
+            holder.other_title = (TextView) view.findViewById(R.id.item_list_normal_title_other);
+            holder.photo = (ImageView) view.findViewById(R.id.item_list_normal_img);
+            holder.user = (TextView) view.findViewById(R.id.item_list_normal_name);
+            holder.date = (TextView) view.findViewById(R.id.item_list_normal_date);
+            view.setTag(holder);
+        }
     }
 
 }

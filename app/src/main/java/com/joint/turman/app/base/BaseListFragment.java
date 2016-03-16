@@ -46,17 +46,18 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     protected boolean isReload = false;
     protected int lastItemIndex;
 
+    protected boolean allLoaded = false;
+
     protected Handler mhandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 0x01:
+                    adapter = getAdapter();
+                    mListView.setAdapter(adapter);
                     if (!isReload) {
-                        adapter = getAdapter();
-                        mListView.setAdapter(adapter);
                         hideLoading(entityList != null);
                     } else {
-                        adapter.notifyDataSetChanged();
                         mRefreshLayout.finishRefreshing();
                     }
                     pageIndex++;
@@ -75,6 +76,13 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
 
     protected abstract A getAdapter();
     protected void loadData(){
+        //如果所有数据都读取完成，则直接返回不发送数据读取请求
+        //这里避免因为服务端刷新数据（增加或删除）导致最后一页重复读取数据
+        //如需重新读取刷新后的数据列表则需要刷新list重新初始化加载数据
+        if (allLoaded){
+            return;
+        }
+
         //初始查询条件
         if (params == null)
             params = new HashMap<String, Object>();
@@ -131,6 +139,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
                 entityList = null;
                 pageIndex = 1;
                 isReload = true;
+                allLoaded = false;
                 loadData();
             }
         });
