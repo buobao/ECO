@@ -33,4 +33,7 @@ dependencies {
 
     compile 'commons-codec:commons-codec:1.9'
 
+    //日历控件
+    compile 'com.prolificinteractive:material-calendarview:1.2.0'
+
 }

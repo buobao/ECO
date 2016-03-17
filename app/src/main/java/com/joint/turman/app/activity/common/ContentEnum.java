@@ -1,6 +1,7 @@
 package com.joint.turman.app.activity.common;
 
 import com.joint.turman.app.R;
+import com.joint.turman.app.activity.common.fragments.CheckInfoFragment;
 import com.joint.turman.app.activity.common.fragments.ProjectFragment;
 import com.joint.turman.app.activity.common.fragments.contexts.ProfileFragment;
 import com.joint.turman.app.activity.common.fragments.contexts.SettingFragment;
@@ -18,6 +19,7 @@ public enum ContentEnum {
     CLIENT(1,R.string.act_home_client_info, ClientListFragment.class),
     LINKMAN(2, R.string.act_home_linkman_info, LinkmanListFragment.class),
     PROJECT(3, R.string.act_home_project_info, ProjectFragment.class),
+    CHECKINFO(4, R.string.act_home_check_info, CheckInfoFragment.class),
     PROBACK(5, R.string.act_home_feedback_info, ProbackListFragment.class),
     COMMENT(6, R.string.act_home_communication, CommentListFragment.class),
     ANNOUNCE(7, R.string.act_home_notice, AnnounceListFragment.class),
