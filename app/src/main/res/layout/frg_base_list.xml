@@ -11,15 +11,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/frg_search"/>
 
-    <!--<com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout-->
-        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--app:AniBackColor="@color/gray"-->
-        <!--app:AniForeColor="#ffffffff"-->
-        <!--app:CircleSmaller="6"-->
-        <!--android:id="@+id/frg_refresh_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-    <!--</com.joint.turman.customwidget.circlerefresh.CircleRefreshLayout>-->
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

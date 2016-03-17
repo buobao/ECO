@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.joint.turman.app.R;
+import com.joint.turman.app.bean.ParamsMap;
 import com.joint.turman.app.entity.BaseEntity;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.listview.SimpleListView;
@@ -26,6 +27,10 @@ import java.util.Map;
  * Created by dqf on 2016/3/11.
  */
 public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapter> extends BaseFragment{
+    public static final String DEFAULT_PARAMS = "default_params";
+
+    private Map<String, Object> def_params = null;
+
     public static int INIT_LOADING = 0x01;
     public static int PAGE_LOADING = 0x02;
     public static int NO_LOADING = 0x03;
@@ -90,6 +95,12 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
             params = new HashMap<String, Object>();
         params.put("pageIndex",pageIndex);
         params.put("pageSize", TurmanApplication.getPageSize());
+        //添加默认参数
+        if (def_params != null){
+            for (String key:def_params.keySet()){
+                params.put(key,def_params.get(key));
+            }
+        }
         if (pageIndex > 1){
             mListView.updateFoot(SimpleListView.LOADING);
         } else {
@@ -104,11 +115,21 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
+        mSearchBar = (SearchBar) view.findViewById(R.id.frg_search);
+        if (!showSearchBar()){
+            mSearchBar.setVisibility(View.GONE);
+        }
         loading_layout = (LinearLayout) view.findViewById(R.id.frg_loading);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frg_refresh_layout);
         mListView = (SimpleListView) view.findViewById(R.id.frg_list);
         mErrorMessage = (TextView) view.findViewById(R.id.frm_error_message);
         pageIndex = 1;
+
+        //默认的查询参数，来自activity
+        Bundle bundle = getArguments();
+        if (bundle != null && bundle.getSerializable(DEFAULT_PARAMS) != null) {
+            def_params = ((ParamsMap) bundle.getSerializable(DEFAULT_PARAMS)).getMap();
+        }
 
         initViews(view);
         return view;
@@ -165,5 +186,8 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         }
     }
 
+    public boolean showSearchBar(){
+        return true;
+    }
 
 }

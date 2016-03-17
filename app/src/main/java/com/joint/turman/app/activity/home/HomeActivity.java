@@ -198,7 +198,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 bundle = TurmanApplication.getContentBundle(ContentEnum.LINKMAN);
                 break;
             case R.id.leftmenu_project:
-                Toast.makeText(HomeActivity.this,"项目信息",Toast.LENGTH_SHORT).show();
+                bundle = TurmanApplication.getContentBundle(ContentEnum.PROJECT);
                 break;
             case R.id.leftmenu_check:
                 Toast.makeText(HomeActivity.this,"签到信息",Toast.LENGTH_SHORT).show();
