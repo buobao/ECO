@@ -75,6 +75,9 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
                     break;
                 case 0x03:
                     mListView.updateFoot(SimpleListView.LOADING_NO_MORE);
+                    if (entityList == null || entityList.size() == 0) {
+                        hideLoading(false);
+                    }
                     allLoaded = true;
                     break;
             }
