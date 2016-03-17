@@ -98,6 +98,12 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
             params = new HashMap<String, Object>();
         params.put("pageIndex",pageIndex);
         params.put("pageSize", TurmanApplication.getPageSize());
+        String search_str = mSearchBar.getSearchString();
+        if (!"".equals(search_str)){
+            params.put(SearchBar.SEARCH_PROPERTY,getSearchProperty());
+            params.put(SearchBar.SEARCH_KEYWORD, search_str);
+        }
+
         //添加默认参数
         if (def_params != null){
             for (String key:def_params.keySet()){
@@ -121,6 +127,13 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         mSearchBar = (SearchBar) view.findViewById(R.id.frg_search);
         if (!showSearchBar()){
             mSearchBar.setVisibility(View.GONE);
+        } else {
+            mSearchBar.setSearchOption(new SearchBar.SearchOption() {
+                @Override
+                public void search() {
+                    reLoadData();
+                }
+            });
         }
         loading_layout = (LinearLayout) view.findViewById(R.id.frg_loading);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frg_refresh_layout);
@@ -161,16 +174,21 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                entityList = null;
-                pageIndex = 1;
-                isReload = true;
-                allLoaded = false;
-                mListView.resetFoot();
-                loadData();
+                reLoadData();
             }
         });
 
         //初始化加载数据
+        loadData();
+    }
+
+    private void reLoadData(){
+        params = null;
+        entityList = null;
+        pageIndex = 1;
+        isReload = true;
+        allLoaded = false;
+        mListView.resetFoot();
         loadData();
     }
 
@@ -191,6 +209,14 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
 
     public boolean showSearchBar(){
         return true;
+    }
+
+    /**
+     * 获取列表查询的字段名称
+     * @return
+     */
+    public String getSearchProperty(){
+        return "name";
     }
 
 }

@@ -1,10 +1,8 @@
 package com.joint.turman.app.ui.search;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,14 +15,13 @@ import java.util.Map;
  * Created by dqf on 2016/3/11.
  */
 public class SearchBar extends LinearLayout implements View.OnClickListener {
+    public static final String SEARCH_PROPERTY = "pageProperty";
+    public static final String SEARCH_KEYWORD = "pageKeyword";
+
     private EditText mSearchContext;
     private TextView mSearchBtn;
     private Context context;
 
-    //查询条件的名称
-    private String searchTag;
-    //查询url
-    private String url;
     //其他附加的条件
     private Map<String,Object> params;
 
@@ -48,14 +45,6 @@ public class SearchBar extends LinearLayout implements View.OnClickListener {
         addView(view);
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public Map<String, Object> getParams() {
         return params;
     }
@@ -67,14 +56,27 @@ public class SearchBar extends LinearLayout implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         //这里写查询过程
+        if (searchOption != null) {
+            searchOption.search();
+        }
     }
 
-    public String getSearchTag() {
-        return searchTag;
+    public String getSearchString(){
+        return mSearchContext.getText().toString();
     }
 
-    public void setSearchTag(String searchTag) {
-        this.searchTag = searchTag;
+    private SearchOption searchOption;
+
+    public interface SearchOption{
+        public void search();
+    }
+
+    public SearchOption getSearchOption() {
+        return searchOption;
+    }
+
+    public void setSearchOption(SearchOption searchOption) {
+        this.searchOption = searchOption;
     }
 }
 
