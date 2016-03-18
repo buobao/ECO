@@ -22,6 +22,11 @@ public class ProinfoListCallback extends Callback<ListResult<ProInfo>> {
         JsonObject obj = new JsonParser().parse(json_str).getAsJsonObject();
         if (obj.get("data").toString().equals("\"\"")){
             obj.remove("data");
+        } else {
+            JsonObject subObj = obj.get("data").getAsJsonObject();
+            if (subObj.get("dataRows").toString().equals("\"\"")){
+                subObj.remove("dataRows");
+            }
         }
         ListResult<ProInfo> result;
         Gson _g = new GsonBuilder().serializeNulls().create();

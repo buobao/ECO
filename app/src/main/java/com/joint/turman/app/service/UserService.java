@@ -2,6 +2,7 @@ package com.joint.turman.app.service;
 
 import com.joint.turman.app.internate.OkHttpUtils;
 import com.joint.turman.app.internate.Urls;
+import com.joint.turman.app.internate.builder.GetBuilder;
 import com.joint.turman.app.internate.callback.Callback;
 
 import java.util.Map;
@@ -25,4 +26,44 @@ public class UserService extends BaseService {
                 .build()
                 .execute(callback);
     }
+
+    /**
+     * 读取日历数据
+     * @param map
+     * @param callback
+     */
+    public static void getCalendarDate(Map<String,Object> map, Callback callback){
+        GetBuilder builder = OkHttpUtils.get();
+        map = setParams(map);
+        for (String key : map.keySet()){
+            builder.addParams(key, map.get(key).toString());
+        }
+        builder.url(setUrl(Urls.CALENDAR_LIST));
+        builder.build().execute(callback);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

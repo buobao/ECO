@@ -8,7 +8,7 @@
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/frg_checkinfo_calendar"
         android:layout_width="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="22"
         android:layout_height="0dp"
         app:mcv_showOtherDates="none"
         app:mcv_selectionColor="@color/gray"
@@ -23,7 +23,17 @@
         android:id="@+id/frg_checkinfo_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="10"
         />
+    <TextView
+        android:id="@+id/frg_checkinfo_loaderror"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="没有数据"
+        android:visibility="gone"
+        android:textColor="@color/gray"/>
 
 </LinearLayout>
