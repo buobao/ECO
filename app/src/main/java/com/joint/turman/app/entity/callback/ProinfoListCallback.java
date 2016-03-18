@@ -1,7 +1,5 @@
 package com.joint.turman.app.entity.callback;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -29,7 +27,6 @@ public class ProinfoListCallback extends Callback<ListResult<ProInfo>> {
             }
         }
         ListResult<ProInfo> result;
-        Gson _g = new GsonBuilder().serializeNulls().create();
         result = _g.fromJson(obj,new TypeToken<ListResult<ProInfo>>(){}.getType());
         return result;
     }

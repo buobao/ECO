@@ -41,6 +41,21 @@ public class UserService extends BaseService {
         builder.url(setUrl(Urls.CALENDAR_LIST));
         builder.build().execute(callback);
     }
+
+    /**
+     * 读取有事件的日期
+     * @param map
+     * @param callback
+     */
+    public static void getCalendarDateList(Map<String,Object> map, Callback callback){
+        GetBuilder builder = OkHttpUtils.get();
+        map = setParams(map);
+        for (String key : map.keySet()){
+            builder.addParams(key, map.get(key).toString());
+        }
+        builder.url(setUrl(Urls.CALENDAR_DATE_LIST));
+        builder.build().execute(callback);
+    }
 }
 
 

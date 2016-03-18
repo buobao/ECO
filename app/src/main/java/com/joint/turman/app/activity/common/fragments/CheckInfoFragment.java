@@ -1,8 +1,10 @@
 package com.joint.turman.app.activity.common.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.fragments.lists.adapters.ProInfoAdapter;
 import com.joint.turman.app.bean.ListResult;
@@ -18,6 +24,7 @@ import com.joint.turman.app.entity.ListEntity;
 import com.joint.turman.app.entity.ProInfo;
 import com.joint.turman.app.entity.Status;
 import com.joint.turman.app.entity.callback.ProinfoListCallback;
+import com.joint.turman.app.internate.callback.Callback;
 import com.joint.turman.app.service.UserService;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.listview.SimpleListView;
@@ -25,15 +32,19 @@ import com.joint.turman.app.utils.DateUtils;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by dqf on 2016/3/17.
@@ -51,6 +62,9 @@ public class CheckInfoFragment extends Fragment {
     private boolean mIsAllLoaded = false;
 
     private Date mSelectDate = null;
+
+    private Date mMonthStart = null;
+    private Date mMonthEnd = null;
 
     private int lastItemIndex;
 
@@ -80,6 +94,48 @@ public class CheckInfoFragment extends Fragment {
                 case 0x05:
                     dataLoadError("网络异常,请联系管理员");
                     break;
+                case 0x06:
+                    //setDecorator();
+                    Bundle bundle = msg.getData();
+                    setDecorator(bundle.getParcelableArrayList("list"));
+                    break;
+            }
+        }
+    };
+
+    private Callback<List<String>> datelist_callback = new Callback<List<String>>() {
+        @Override
+        public List<String> parseNetworkResponse(Response response) throws Exception {
+            String json_str = response.body().string();
+            JsonObject obj = new JsonParser().parse(json_str).getAsJsonObject();
+            JsonObject data = obj.get("data").getAsJsonObject();
+            JsonArray arr =  data.get("dateList").getAsJsonArray();
+
+            List<String> result = new ArrayList<>();
+            Iterator it = arr.iterator();
+            while (it.hasNext()){
+                JsonElement e = (JsonElement) it.next();
+                result.add(_g.fromJson(e,String.class));
+            }
+
+            return result;
+        }
+
+        @Override
+        public void onError(Call call, Exception e) {
+
+        }
+
+        @Override
+        public void onResponse(List<String> response) {
+            if (response.size() > 0) {
+                Message msg = new Message();
+                msg.what = 0x06;
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList("list", (ArrayList<String>) response);
+                msg.setData(bundle);
+
+                mhandler.sendMessage(msg);
             }
         }
     };
@@ -135,6 +191,9 @@ public class CheckInfoFragment extends Fragment {
         mListView = (SimpleListView) view.findViewById(R.id.frg_checkinfo_list);
         mErrorMessage = (TextView) view.findViewById(R.id.frg_checkinfo_loaderror);
 
+        mMonthStart = DateUtils.getMonthFirstDay(new Date());
+        mMonthEnd = DateUtils.getMonthLastDay(new Date());
+
         mCalendar.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(MaterialCalendarView widget, CalendarDay date, boolean selected) {
@@ -142,6 +201,15 @@ public class CheckInfoFragment extends Fragment {
                 String str = date.getYear() + "-" + (date.getMonth() + 1) + "-" + date.getDay();
                 mSelectDate = DateUtils.getDayStart(str);
                 reloadDate();
+            }
+        });
+
+        mCalendar.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                mMonthStart = DateUtils.getMonthFirstDay(date.getDate());
+                mMonthEnd = DateUtils.getMonthLastDay(date.getDate());
+                loadDecorator();
             }
         });
 
@@ -158,7 +226,30 @@ public class CheckInfoFragment extends Fragment {
                 lastItemIndex = firstVisibleItem + visibleItemCount - 1;
             }
         });
+
+        loadDecorator();
         return view;
+    }
+
+    private void setDecorator(ArrayList<Parcelable> calendarDayList){
+        List<CalendarDay> list = new ArrayList<>();
+        for (Parcelable l:calendarDayList){
+            list.add(CalendarDay.from(DateUtils.parse(l.toString())));
+        }
+        mCalendar.addDecorator(new EventDecorator(Color.GRAY, list));
+    }
+
+    private void loadDecorator(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String,Object> dataList_params = new HashMap<String, Object>();
+                dataList_params.put("_startTime", mMonthStart.getTime());
+                dataList_params.put("_endTime", DateUtils.tomorrow(mMonthEnd).getTime());
+                //dataList_params.put("proinfoId","");
+                UserService.getCalendarDateList(dataList_params, datelist_callback);
+            }
+        }).start();
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.joint.turman.app.internate.callback;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -9,6 +12,7 @@ import okhttp3.Response;
  */
 public abstract class Callback<T> {
 
+    protected Gson _g = new GsonBuilder().serializeNulls().create();
     /**
      * UI Thread
      *
