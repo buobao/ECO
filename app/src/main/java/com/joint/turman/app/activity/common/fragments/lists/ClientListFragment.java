@@ -1,5 +1,6 @@
 package com.joint.turman.app.activity.common.fragments.lists;
 
+import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.fragments.lists.adapters.ClientAdapter;
 import com.joint.turman.app.base.BaseListFragment;
 import com.joint.turman.app.bean.ListResult;
@@ -62,6 +63,10 @@ public class ClientListFragment extends BaseListFragment<Client,ClientAdapter> {
         }).start();
     }
 
+    @Override
+    public int getSearchHint() {
+        return R.string.search_hint_client;
+    }
 }
 
 

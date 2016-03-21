@@ -1,5 +1,6 @@
 package com.joint.turman.app.activity.common.fragments.lists;
 
+import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.fragments.lists.adapters.ProInfoAdapter;
 import com.joint.turman.app.base.BaseListFragment;
 import com.joint.turman.app.bean.ListResult;
@@ -59,5 +60,10 @@ public class ProInfoListFragment extends BaseListFragment<ProInfo, ProInfoAdapte
                 ProinfoService.getList(params, callback);
             }
         }).start();
+    }
+
+    @Override
+    public int getSearchHint() {
+        return R.string.search_hint_proinfo;
     }
 }

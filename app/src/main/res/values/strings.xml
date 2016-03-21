@@ -47,5 +47,11 @@
     <string name="field_user_sex">性 别</string>
     <string name="field_user_phone">手 机</string>
 
-
+    <!--search hint-->
+    <string name="search_hint_client">请输入客户名称</string>
+    <string name="search_hint_linkman">请输入联系人名称</string>
+    <string name="search_hint_proinfo">请输入项目名称</string>
+    <string name="search_hint_proback">请输入反馈主题</string>
+    <string name="search_hint_knowledge">请输入知识库文件名称</string>
+    <string name="search_hint_announce">请输入公告主题</string>
 </resources>

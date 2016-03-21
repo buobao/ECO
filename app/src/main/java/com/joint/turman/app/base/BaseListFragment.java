@@ -128,6 +128,9 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         if (!showSearchBar()){
             mSearchBar.setVisibility(View.GONE);
         } else {
+            if (getSearchHint() != -1) {
+                mSearchBar.setSearchHint(getSearchHint());
+            }
             mSearchBar.setSearchOption(new SearchBar.SearchOption() {
                 @Override
                 public void search() {
@@ -218,6 +221,10 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
      */
     public String getSearchProperty(){
         return "name";
+    }
+
+    public int getSearchHint(){
+        return -1;
     }
 
 }

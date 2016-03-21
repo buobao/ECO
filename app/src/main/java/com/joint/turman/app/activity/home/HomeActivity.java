@@ -11,11 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.ContentEnum;
+import com.joint.turman.app.activity.home.fragment.knowledge.KnowledgeFragment;
 import com.joint.turman.app.activity.home.fragment.msg.MsgFragment;
+import com.joint.turman.app.activity.home.fragment.project.ProjectFragment;
 import com.joint.turman.app.base.BaseActivity;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.drawable.MaterialMenuDrawable;
@@ -51,10 +52,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     //菜单是否打开
     private boolean isMenuOpened=false;
     //当前在哪个切换页
-    private int currIndex=0;
+    private int currIndex=MSG_BOTTOM_TAB;
 
     private FragmentManager mFragmentManager;
-    private int currTabFragment = 0;
 
     @Override
     protected int getLayout() {
@@ -135,16 +135,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
                 switch (checkedId) {
                     case R.id.tab_01:
-                        exchangeTab(0);
-                        Toast.makeText(getBaseContext(), "第1个", Toast.LENGTH_SHORT).show();
+                        exchangeTab(MSG_BOTTOM_TAB);
                         break;
                     case R.id.tab_02:
-                        exchangeTab(1);
-                        Toast.makeText(getBaseContext(), "第2个", Toast.LENGTH_SHORT).show();
+                        exchangeTab(PROJECT_BOTTOM_TAB);
                         break;
                     case R.id.tab_03:
-                        exchangeTab(2);
-                        Toast.makeText(getBaseContext(), "第3个", Toast.LENGTH_SHORT).show();
+                        exchangeTab(KNOWLEDGE_BOTTOM_TAB);
                         break;
                 }
             }
@@ -153,34 +150,29 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         createFragment(MSG_BOTTOM_TAB);
 
         //以下是设置红点的代码
-        setTabHint(mTab1,20);
-        setTabHint(mTab2,43);
-        setTabHint(mTab3,105);
+//        setTabHint(mTab1,20);
+//        setTabHint(mTab2,43);
+//        setTabHint(mTab3,105);
     }
 
     //创建底部菜单fragment
     private void createFragment(int flag){
-
-        if (flag == currTabFragment){
-            return;
-        }
-
         Fragment fragment = null;
         switch (flag) {
             case MSG_BOTTOM_TAB:
                 fragment = new MsgFragment();
                 break;
             case PROJECT_BOTTOM_TAB:
+                fragment = new ProjectFragment();
                 break;
             case KNOWLEDGE_BOTTOM_TAB:
+                fragment = new KnowledgeFragment();
                 break;
         }
 
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         transaction.replace(R.id.content_fragment, fragment);
         transaction.commit();
-
-        currTabFragment = flag;
     }
 
     //设置tab上的数字
@@ -202,17 +194,22 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     //tab切换处理
     private void exchangeTab(int index){
+        if (index == currIndex){
+            return;
+        }
+
         switch (currIndex){
-            case 0:
+            case MSG_BOTTOM_TAB:
                 clearHint(mTab1);
                 break;
-            case 1:
+            case PROJECT_BOTTOM_TAB:
                 clearHint(mTab2);
                 break;
-            case 2:
+            case KNOWLEDGE_BOTTOM_TAB:
                 clearHint(mTab3);
                 break;
         }
+        createFragment(index);
         currIndex = index;
     }
 
@@ -220,10 +217,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      * 显示隐藏菜单
      */
     private void toggleDrawable(){
-        if(isMenuOpened)
+        if(isMenuOpened) {
             mDrawerLayout.closeDrawer(mLeftMenu);
-        else
+        }
+        else {
             mDrawerLayout.openDrawer(mLeftMenu);
+        }
     }
 
     @Override

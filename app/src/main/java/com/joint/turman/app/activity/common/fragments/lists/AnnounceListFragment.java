@@ -1,5 +1,6 @@
 package com.joint.turman.app.activity.common.fragments.lists;
 
+import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.fragments.lists.adapters.AnnounceAdapter;
 import com.joint.turman.app.base.BaseListFragment;
 import com.joint.turman.app.bean.ListResult;
@@ -60,5 +61,10 @@ public class AnnounceListFragment extends BaseListFragment<Announce, AnnounceAda
     @Override
     protected AnnounceAdapter getAdapter() {
         return new AnnounceAdapter(entityList, _context);
+    }
+
+    @Override
+    public int getSearchHint() {
+        return R.string.search_hint_announce;
     }
 }

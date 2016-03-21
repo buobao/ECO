@@ -93,6 +93,14 @@ public class SearchBar extends LinearLayout implements View.OnClickListener {
     public void setmBackgroundColor(int mBackgroundColor) {
         this.mBackgroundColor = mBackgroundColor;
     }
+
+    /**
+     * 设置查询提示字符
+     * @param hint
+     */
+    public void setSearchHint(int hint){
+        mSearchContext.setHint(hint);
+    }
 }
 
 

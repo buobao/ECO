@@ -15,6 +15,7 @@
         android:background="@drawable/search_background"
         android:drawableLeft="@drawable/tag_search"
         android:padding="3dp"
+        android:textColorHint="@color/grayslate"
         />
 
     <TextView

@@ -1,5 +1,6 @@
 package com.joint.turman.app.activity.common.fragments.lists;
 
+import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.fragments.lists.adapters.LinkmanAdapter;
 import com.joint.turman.app.base.BaseListFragment;
 import com.joint.turman.app.bean.ListResult;
@@ -60,5 +61,10 @@ public class LinkmanListFragment extends BaseListFragment<Linkman, LinkmanAdapte
     @Override
     protected LinkmanAdapter getAdapter() {
         return new LinkmanAdapter(entityList, _context);
+    }
+
+    @Override
+    public int getSearchHint() {
+        return R.string.search_hint_linkman;
     }
 }
