@@ -147,7 +147,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
             def_params = ((ParamsMap) bundle.getSerializable(DEFAULT_PARAMS)).getMap();
         }
 
-        initViews(view);
+        initViews(view, savedInstanceState);
         return view;
     }
 
@@ -155,7 +155,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         return R.layout.frg_base_list;
     }
 
-    protected void initViews(View view){
+    protected void initViews(View view, Bundle bundle){
         setHasOptionsMenu(true);
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -182,6 +182,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
         loadData();
     }
 
+    //重新加载数据
     private void reLoadData(){
         params = null;
         entityList = null;

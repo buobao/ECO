@@ -60,4 +60,9 @@ public class MyProbackListFragment extends BaseListFragment<Proback, ProbackAdap
             }
         }).start();
     }
+
+    @Override
+    public boolean showSearchBar(){
+        return false;
+    }
 }

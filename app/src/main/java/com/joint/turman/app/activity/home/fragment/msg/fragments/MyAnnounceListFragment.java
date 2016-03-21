@@ -60,4 +60,9 @@ public class MyAnnounceListFragment extends BaseListFragment<Announce,AnnounceAd
             }
         }).start();
     }
+
+    @Override
+    public boolean showSearchBar(){
+        return false;
+    }
 }

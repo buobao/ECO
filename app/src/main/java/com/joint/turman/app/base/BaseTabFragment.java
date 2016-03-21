@@ -52,6 +52,7 @@ public abstract class BaseTabFragment extends BaseFragment {
         mTabLayout.setLayoutMode(TabLayout.MODE_FIXED);
         mTabLayout.setupWithViewPager(mViewPager);
 
+        mViewPager.setOffscreenPageLimit(3);
         return view;
     }
 

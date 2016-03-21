@@ -60,6 +60,11 @@ public class MyMessageListFragment extends BaseListFragment<Comment, MyMessageAd
             }
         }).start();
     }
+
+    @Override
+    public boolean showSearchBar(){
+        return false;
+    }
 }
 
 

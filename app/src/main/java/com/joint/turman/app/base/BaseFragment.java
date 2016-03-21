@@ -19,5 +19,8 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
         _context = getActivity();
         _app = (TurmanApplication)_context.getApplicationContext();
+        initCreate(savedInstanceState);
     }
+
+    public void initCreate(Bundle bundle){}
 }
