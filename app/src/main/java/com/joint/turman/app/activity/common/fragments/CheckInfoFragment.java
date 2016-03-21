@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -97,7 +96,7 @@ public class CheckInfoFragment extends Fragment {
                 case 0x06:
                     //setDecorator();
                     Bundle bundle = msg.getData();
-                    setDecorator(bundle.getParcelableArrayList("list"));
+                    setDecorator((List<String>)bundle.getParcelableArrayList("list").get(0));
                     break;
             }
         }
@@ -132,7 +131,9 @@ public class CheckInfoFragment extends Fragment {
                 Message msg = new Message();
                 msg.what = 0x06;
                 Bundle bundle = new Bundle();
-                bundle.putStringArrayList("list", (ArrayList<String>) response);
+                ArrayList list = new ArrayList();
+                list .add(response);
+                bundle.putParcelableArrayList("list", list);
                 msg.setData(bundle);
 
                 mhandler.sendMessage(msg);
@@ -231,12 +232,12 @@ public class CheckInfoFragment extends Fragment {
         return view;
     }
 
-    private void setDecorator(ArrayList<Parcelable> calendarDayList){
-        List<CalendarDay> list = new ArrayList<>();
-        for (Parcelable l:calendarDayList){
-            list.add(CalendarDay.from(DateUtils.parse(l.toString())));
+    private void setDecorator(List<String> list){
+        List<CalendarDay> calendarDayList = new ArrayList<>();
+        for (String l:list){
+            calendarDayList.add(CalendarDay.from(DateUtils.parse(l)));
         }
-        mCalendar.addDecorator(new EventDecorator(Color.GRAY, list));
+        mCalendar.addDecorator(new EventDecorator(Color.GRAY, calendarDayList));
     }
 
     private void loadDecorator(){
