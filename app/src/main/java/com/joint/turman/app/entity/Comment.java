@@ -10,6 +10,7 @@ public class Comment extends BaseEntity {
     private String projectId;
     private String type;
     private String id;
+    private String name;
 
     private String atUsersName;
     private String atUsersId;
@@ -153,5 +154,13 @@ public class Comment extends BaseEntity {
 
     public void setTargetClass(String targetClass) {
         this.targetClass = targetClass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

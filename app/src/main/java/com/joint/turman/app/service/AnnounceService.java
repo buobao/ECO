@@ -27,4 +27,20 @@ public class AnnounceService extends BaseService<Announce> {
         builder.url(setUrl(Urls.ANNOUNCE_LIST));
         builder.build().execute(callback);
     }
+
+
+    /**
+     * 获取与用户相关的公告信息
+     * @param map
+     * @param callback
+     */
+    public static void getRelatedList(Map<String, Object> map, Callback callback){
+        GetBuilder builder = OkHttpUtils.get();
+        map = setParams(map);
+        for (String key : map.keySet()){
+            builder.addParams(key, map.get(key).toString());
+        }
+        builder.url(setUrl(Urls.ANNOUNCE_LIST_RELATED));
+        builder.build().execute(callback);
+    }
 }

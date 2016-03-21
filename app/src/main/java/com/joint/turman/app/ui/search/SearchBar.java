@@ -22,6 +22,8 @@ public class SearchBar extends LinearLayout implements View.OnClickListener {
     private TextView mSearchBtn;
     private Context context;
 
+    private int mBackgroundColor=-1;
+
     //其他附加的条件
     private Map<String,Object> params;
 
@@ -42,6 +44,11 @@ public class SearchBar extends LinearLayout implements View.OnClickListener {
         mSearchBtn = (TextView) view.findViewById(R.id.frg_list_search_btn);
         mSearchBtn.setOnClickListener(this);
         setOrientation(VERTICAL);
+
+        if (mBackgroundColor != -1){
+            LinearLayout layout = (LinearLayout) view.findViewById(R.id.frg_list_search_layout);
+            layout.setBackgroundColor(mBackgroundColor);
+        }
         addView(view);
     }
 
@@ -77,6 +84,14 @@ public class SearchBar extends LinearLayout implements View.OnClickListener {
 
     public void setSearchOption(SearchOption searchOption) {
         this.searchOption = searchOption;
+    }
+
+    public int getmBackgroundColor() {
+        return mBackgroundColor;
+    }
+
+    public void setmBackgroundColor(int mBackgroundColor) {
+        this.mBackgroundColor = mBackgroundColor;
     }
 }
 

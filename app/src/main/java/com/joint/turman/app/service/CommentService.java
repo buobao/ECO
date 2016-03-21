@@ -27,4 +27,50 @@ public class CommentService extends BaseService<Comment> {
         builder.url(setUrl(Urls.COMMENT_LIST));
         builder.build().execute(callback);
     }
+
+    /**
+     * 读取与我相关的列表
+     * @param map
+     * @param callback
+     */
+    public static void getAboutMeList(Map<String, Object> map, Callback callback){
+        GetBuilder builder = OkHttpUtils.get();
+        map = setParams(map);
+        for (String key : map.keySet()){
+            builder.addParams(key, map.get(key).toString());
+        }
+        builder.url(setUrl(Urls.COMMENT_LIST_ABOUTME));
+        builder.build().execute(callback);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

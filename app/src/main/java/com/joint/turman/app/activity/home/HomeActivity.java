@@ -2,6 +2,9 @@ package com.joint.turman.app.activity.home;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import com.joint.turman.app.R;
 import com.joint.turman.app.activity.common.ContentEnum;
+import com.joint.turman.app.activity.home.fragment.msg.MsgFragment;
 import com.joint.turman.app.base.BaseActivity;
 import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.app.ui.drawable.MaterialMenuDrawable;
@@ -23,6 +27,11 @@ import com.joint.turman.customwidget.tableview.TableView;
  * Created by dqf on 2016/3/3.
  */
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final int MSG_BOTTOM_TAB = 1;
+    private static final int PROJECT_BOTTOM_TAB = 2;
+    private static final int KNOWLEDGE_BOTTOM_TAB = 3;
+
 
     private static final String TAG = "HomeActivity";
 
@@ -44,6 +53,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     //当前在哪个切换页
     private int currIndex=0;
 
+    private FragmentManager mFragmentManager;
+    private int currTabFragment = 0;
+
     @Override
     protected int getLayout() {
         return R.layout.act_home;
@@ -62,6 +74,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         });
         mInflater = getLayoutInflater();
         //initActionBar(mActionBar);
+
+        mFragmentManager = getSupportFragmentManager();
 
         //初始化侧滑菜单
         mDrawerLayout = (DrawerLayout) findViewById(R.id.act_home_mainContainer);
@@ -136,10 +150,37 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             }
         });
 
+        createFragment(MSG_BOTTOM_TAB);
+
         //以下是设置红点的代码
         setTabHint(mTab1,20);
         setTabHint(mTab2,43);
         setTabHint(mTab3,105);
+    }
+
+    //创建底部菜单fragment
+    private void createFragment(int flag){
+
+        if (flag == currTabFragment){
+            return;
+        }
+
+        Fragment fragment = null;
+        switch (flag) {
+            case MSG_BOTTOM_TAB:
+                fragment = new MsgFragment();
+                break;
+            case PROJECT_BOTTOM_TAB:
+                break;
+            case KNOWLEDGE_BOTTOM_TAB:
+                break;
+        }
+
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        transaction.replace(R.id.content_fragment, fragment);
+        transaction.commit();
+
+        currTabFragment = flag;
     }
 
     //设置tab上的数字
@@ -153,20 +194,23 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         tab.getHintTextView().setTextColor(0xffffffff);
     }
 
+    //清除tab hint
+    private void clearHint(BottomTab tab){
+        tab.getHintTextView().setText("");
+        tab.getHintTextView().setVisibility(View.GONE);
+    }
+
     //tab切换处理
     private void exchangeTab(int index){
         switch (currIndex){
             case 0:
-                mTab1.getHintTextView().setText("");
-                mTab1.getHintTextView().setVisibility(View.GONE);
+                clearHint(mTab1);
                 break;
             case 1:
-                mTab2.getHintTextView().setText("");
-                mTab2.getHintTextView().setVisibility(View.GONE);
+                clearHint(mTab2);
                 break;
             case 2:
-                mTab3.getHintTextView().setText("");
-                mTab3.getHintTextView().setVisibility(View.GONE);
+                clearHint(mTab3);
                 break;
         }
         currIndex = index;
