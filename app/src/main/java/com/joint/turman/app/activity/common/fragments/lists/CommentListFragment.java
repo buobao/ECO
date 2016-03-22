@@ -61,4 +61,9 @@ public class CommentListFragment extends BaseListFragment<Comment, CommentAdapte
     protected CommentAdapter getAdapter() {
         return new CommentAdapter(entityList, _context);
     }
+
+    @Override
+    public boolean showSearchBar() {
+        return false;
+    }
 }

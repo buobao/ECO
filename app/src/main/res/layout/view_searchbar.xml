@@ -7,7 +7,7 @@
     android:background="@color/gray"
     android:gravity="center"
     android:id="@+id/frg_list_search_layout">
-    <EditText
+    <com.joint.turman.customwidget.clearableedit.ClearableEdit
         android:id="@+id/frg_list_search_input"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -16,6 +16,7 @@
         android:drawableLeft="@drawable/tag_search"
         android:padding="3dp"
         android:textColorHint="@color/grayslate"
+        android:textSize="16sp"
         />
 
     <TextView
