@@ -44,4 +44,32 @@
         <attr name="AniForeColor" format="color" />
         <attr name="CircleSmaller" format="integer"/>
     </declare-styleable>
+
+
+    <!--readable section-->
+    <declare-styleable name="readable_section">
+        <attr name="layout_background" format="color|reference"/>
+        <attr name="isLink" format="boolean"/>
+        <attr name="label_text_color" format="color|reference"/>
+        <attr name="label_text_size" format="dimension"/>
+        <attr name="text_color" format="color|reference"/>
+        <attr name="text_size" format="dimension"/>
+    </declare-styleable>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

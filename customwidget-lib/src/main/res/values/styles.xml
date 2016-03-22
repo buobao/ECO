@@ -251,4 +251,5 @@
     <style name="dialog_quickoption" parent="@style/dialog_common">
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
+
 </resources>
