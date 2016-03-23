@@ -37,7 +37,7 @@ public class ClientContextFragment extends BaseContextFragment<Client> {
             }
             Message msg = new Message();
             Bundle bundle = new Bundle();
-            bundle.putSerializable("data",entity);
+            bundle.putSerializable(MESSAGE_DATA,entity);
             msg.setData(bundle);
             mHandler.sendMessage(msg);
         }

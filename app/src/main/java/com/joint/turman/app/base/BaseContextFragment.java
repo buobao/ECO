@@ -21,6 +21,8 @@ import java.util.Map;
  */
 public abstract class BaseContextFragment<T extends BaseEntity> extends BaseFragment {
 
+    public static final String MESSAGE_DATA = "data";
+
     //显示的实体数据
     protected T mEntity;
 
@@ -30,7 +32,7 @@ public abstract class BaseContextFragment<T extends BaseEntity> extends BaseFrag
         @Override
         public void handleMessage(Message msg) {
             Bundle bundle = msg.getData();
-            mEntity = (T) bundle.getSerializable("data");
+            mEntity = (T) bundle.getSerializable(MESSAGE_DATA);
             setForm();
         }
     };
