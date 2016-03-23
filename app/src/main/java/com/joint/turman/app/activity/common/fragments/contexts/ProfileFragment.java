@@ -17,6 +17,11 @@ public class ProfileFragment extends BaseContextFragment<User> implements View.O
     private Button mLogout;
 
     @Override
+    protected void loadData() {
+
+    }
+
+    @Override
     protected int getLayoutRes() {
         return R.layout.frg_profile;
     }

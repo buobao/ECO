@@ -67,4 +67,8 @@ public class LinkmanListFragment extends BaseListFragment<Linkman, LinkmanAdapte
     public int getSearchHint() {
         return R.string.search_hint_linkman;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+    }
 }

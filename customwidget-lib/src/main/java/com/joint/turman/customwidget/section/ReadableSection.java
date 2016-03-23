@@ -38,7 +38,7 @@ public class ReadableSection extends LinearLayout {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.readable_section);
         if (a != null) {
-            int background = a.getColor(R.styleable.readable_section_layout_background, 0);
+            int background = a.getColor(R.styleable.readable_section_layout_background, getResources().getColor(R.color.listitem_white));
             mLayout.setBackgroundColor(background);
             mLabel.setBackgroundColor(background);
             mText.setBackgroundColor(background);
@@ -67,8 +67,11 @@ public class ReadableSection extends LinearLayout {
             float label_text_size = a.getDimension(R.styleable.readable_section_label_text_size, 16);
             mLabel.setTextSize(label_text_size);
 
+            String text = a.getString(R.styleable.readable_section_label_text);
+            mLabel.setText(text);
+
             int text_color = a.getColor(R.styleable.readable_section_text_color, getResources().getColor(R.color.listitem_black));
-            mLabel.setTextColor(text_color);
+            mText.setTextColor(text_color);
             float text_size = a.getDimension(R.styleable.readable_section_text_size, 16);
             mText.setTextSize(text_size);
         }

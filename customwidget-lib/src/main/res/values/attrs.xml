@@ -51,6 +51,7 @@
         <attr name="layout_background" format="color|reference"/>
         <attr name="isLink" format="boolean"/>
         <attr name="label_text_color" format="color|reference"/>
+        <attr name="label_text" format="string|reference"/>
         <attr name="label_text_size" format="dimension"/>
         <attr name="text_color" format="color|reference"/>
         <attr name="text_size" format="dimension"/>

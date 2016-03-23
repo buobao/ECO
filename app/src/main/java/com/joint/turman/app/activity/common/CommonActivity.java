@@ -17,6 +17,7 @@ import com.joint.turman.app.sys.TurmanApplication;
 public class CommonActivity extends BaseActivity {
     public static final String CONTEXT_TITLE = "context_title";
     public static final String CONTEXT_FRAGMENT = "context_fragment";
+    public static final String KEY_ID = "keyId";
 
     //标题栏
     private Toolbar mActionBar;
@@ -36,7 +37,7 @@ public class CommonActivity extends BaseActivity {
         mActionBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TurmanApplication.backLastActivity(CommonActivity.this);
+                TurmanApplication.backLastActivity();
             }
         });
 
@@ -44,6 +45,11 @@ public class CommonActivity extends BaseActivity {
             Fragment fragment = (Fragment) ContentEnum.getPageByValue(mBundle.getInt(CONTEXT_FRAGMENT)).getClz().newInstance();
             mFragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = mFragmentManager.beginTransaction();
+            if (!"".equals(mBundle.getString(KEY_ID))){
+                Bundle bundle = new Bundle();
+                bundle.putString(KEY_ID,mBundle.getString(KEY_ID));
+                fragment.setArguments(bundle);
+            }
             transaction.replace(R.id.act_common_frame, fragment);
             transaction.commit();
         } catch (Exception e) {

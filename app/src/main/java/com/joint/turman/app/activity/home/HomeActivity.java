@@ -231,32 +231,32 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.leftmenu_myinfo:
                 //Toast.makeText(HomeActivity.this,"个人信息",Toast.LENGTH_SHORT).show();
-                bundle = TurmanApplication.getContentBundle(ContentEnum.PROFILE);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.PROFILE, null);
                 break;
             case R.id.leftmenu_client:
                 //Toast.makeText(HomeActivity.this,"客户信息",Toast.LENGTH_SHORT).show();
-                bundle = TurmanApplication.getContentBundle(ContentEnum.CLIENT);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.CLIENT, null);
                 break;
             case R.id.leftmenu_linkman:
-                bundle = TurmanApplication.getContentBundle(ContentEnum.LINKMAN);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.LINKMAN, null);
                 break;
             case R.id.leftmenu_project:
-                bundle = TurmanApplication.getContentBundle(ContentEnum.PROJECT);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.PROJECT, null);
                 break;
             case R.id.leftmenu_check:
-                bundle = TurmanApplication.getContentBundle(ContentEnum.CHECKINFO);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.CHECKINFO, null);
                 break;
             case R.id.leftmenu_feedback:
-                bundle = TurmanApplication.getContentBundle(ContentEnum.PROBACK);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.PROBACK, null);
                 break;
             case R.id.leftmenu_communication:
-                bundle = TurmanApplication.getContentBundle(ContentEnum.COMMENT);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.COMMENT, null);
                 break;
             case R.id.leftmenu_notice:
-                bundle = TurmanApplication.getContentBundle(ContentEnum.ANNOUNCE);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.ANNOUNCE, null);
                 break;
             case R.id.leftmenu_setting:
-                bundle = TurmanApplication.getContentBundle(ContentEnum.SETTING);
+                bundle = TurmanApplication.getContentBundle(ContentEnum.SETTING, null);
                 break;
         }
         TurmanApplication.openCommonActivity(HomeActivity.this, bundle);

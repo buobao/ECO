@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -174,6 +175,13 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
             }
         });
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                itemSelected(position);
+            }
+        });
+
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -226,5 +234,7 @@ public abstract class BaseListFragment<T extends BaseEntity, A extends ListAdapt
     public int getSearchHint(){
         return -1;
     }
+
+    protected abstract void itemSelected(int position);
 
 }

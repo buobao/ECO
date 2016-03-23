@@ -65,6 +65,11 @@ public class MyMessageListFragment extends BaseListFragment<Comment, MyMessageAd
     public boolean showSearchBar(){
         return false;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+
+    }
 }
 
 

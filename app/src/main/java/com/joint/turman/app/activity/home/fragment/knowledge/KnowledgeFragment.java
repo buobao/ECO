@@ -65,4 +65,8 @@ public class KnowledgeFragment extends BaseListFragment<Knowledge, KnowledgeAdap
     public int getSearchHint() {
         return R.string.search_hint_knowledge;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+    }
 }

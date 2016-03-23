@@ -10,6 +10,9 @@ public class Knowledge extends BaseEntity {
     private String superType;
     private String subType;
 
+    private String contextHtml;
+    private String knowledgeId;
+
     public String getId() {
         return id;
     }
@@ -40,5 +43,21 @@ public class Knowledge extends BaseEntity {
 
     public void setSubType(String subType) {
         this.subType = subType;
+    }
+
+    public String getContextHtml() {
+        return contextHtml;
+    }
+
+    public void setContextHtml(String contextHtml) {
+        this.contextHtml = contextHtml;
+    }
+
+    public String getKnowledgeId() {
+        return knowledgeId;
+    }
+
+    public void setKnowledgeId(String knowledgeId) {
+        this.knowledgeId = knowledgeId;
     }
 }

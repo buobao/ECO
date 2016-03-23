@@ -28,6 +28,16 @@
     <string name="act_home_notice">企业公告</string>
     <string name="act_home_setting">系统设置</string>
 
+    <!--context title-->
+    <string name="client_context_title">客户信息</string>
+    <string name="linkman_context_title">联系人信息</string>
+    <string name="project_context_title">项目详情</string>
+    <string name="check_context_title">签到信息</string>
+    <string name="proback_context_title">项目反馈</string>
+    <string name="notice_context_title">公告详情</string>
+    <string name="knowledge_context_title">知识库信息</string>
+
+
     <string name="act_home_bottom_1">我的消息</string>
     <string name="act_home_bottom_2">当前项目</string>
     <string name="act_home_bottom_3">只是共享</string>

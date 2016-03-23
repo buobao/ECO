@@ -21,6 +21,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TurmanApplication.putActivity(this);
         init();
     }
 

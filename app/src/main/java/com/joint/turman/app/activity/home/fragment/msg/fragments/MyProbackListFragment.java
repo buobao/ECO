@@ -65,4 +65,9 @@ public class MyProbackListFragment extends BaseListFragment<Proback, ProbackAdap
     public boolean showSearchBar(){
         return false;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+
+    }
 }

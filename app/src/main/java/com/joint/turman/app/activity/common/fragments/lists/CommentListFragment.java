@@ -66,4 +66,8 @@ public class CommentListFragment extends BaseListFragment<Comment, CommentAdapte
     public boolean showSearchBar() {
         return false;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+    }
 }

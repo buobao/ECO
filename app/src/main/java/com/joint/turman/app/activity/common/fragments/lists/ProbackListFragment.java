@@ -66,4 +66,8 @@ public class ProbackListFragment extends BaseListFragment<Proback, ProbackAdapte
     public int getSearchHint() {
         return R.string.search_hint_proback;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+    }
 }

@@ -169,10 +169,7 @@ public class TurmanApplication extends BaseApplication {
         }
         context.startActivity(intent);
         if (isFinished){
-            ((Activity)context).finish();
-        } else {
-            //添加到列表以便退出时关闭
-            putActivity((Activity)context);
+            popActivity().finish();
         }
     }
 
@@ -185,6 +182,7 @@ public class TurmanApplication extends BaseApplication {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
         ((Activity)context).finish();
+        popActivity();
     }
 
     //跳转到主页面
@@ -192,19 +190,13 @@ public class TurmanApplication extends BaseApplication {
         Intent intent = new Intent(context, HomeActivity.class);
         context.startActivity(intent);
         ((Activity)context).finish();
+        popActivity();
     }
 
     //返回上一个activity
-    public static void backLastActivity(Context context){
-        backLastActivity(context, true);
-    }
-
-    public static void backLastActivity(Context context, boolean finishCurrent){
-        Intent intent = new Intent(context,popActivity().getClass());
-        context.startActivity(intent);
-        if (finishCurrent){
-            ((Activity)context).finish();
-        }
+    public static void backLastActivity(){
+        Activity curr = popActivity();
+        curr.finish();
     }
 
     //将activity加入到列表
@@ -217,12 +209,16 @@ public class TurmanApplication extends BaseApplication {
         return _activityStack.pop();
     }
 
+    //获取栈顶activity
+    public static Activity peekActivity(){
+        return _activityStack.peek();
+    }
+
     //退出程序
-    public static void exit(Context context){
+    public static void exit(){
         for (Activity activity:_activityStack){
             activity.finish();
         }
-        ((Activity)context).finish();
     }
 
     //强制退出,强制杀死线程.不建议使用
@@ -238,7 +234,7 @@ public class TurmanApplication extends BaseApplication {
             Toast.makeText(context,"再按一次退出程序",Toast.LENGTH_SHORT).show();
             _lastPressTime = currentTime;
         } else {
-            exit(context);
+            exit();
         }
     }
 
@@ -247,10 +243,13 @@ public class TurmanApplication extends BaseApplication {
      * @param contentEnum
      * @return
      */
-    public static Bundle getContentBundle(ContentEnum contentEnum){
+    public static Bundle getContentBundle(ContentEnum contentEnum, String keyId){
         Bundle bundle = new Bundle();
         bundle.putInt(CommonActivity.CONTEXT_TITLE, contentEnum.getTitle());
         bundle.putInt(CommonActivity.CONTEXT_FRAGMENT, contentEnum.getValue());
+        if (keyId != null) {
+            bundle.putString(CommonActivity.KEY_ID, keyId);
+        }
         return bundle;
     }
 

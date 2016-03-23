@@ -27,4 +27,20 @@ public class ClientService extends BaseService<Client> {
         builder.url(setUrl(Urls.CLIENT_LIST));
         builder.build().execute(callback);
     }
+
+
+    /**
+     * 读取用户详细信息
+     * @param map
+     * @param callback
+     */
+    public static void getDetail(Map<String, Object> map, Callback callback){
+        GetBuilder builder = OkHttpUtils.get();
+        map = setParams(map);
+        for (String key : map.keySet()){
+            builder.addParams(key, map.get(key).toString());
+        }
+        builder.url(setUrl(Urls.CLIENT_DETAIL));
+        builder.build().execute(callback);
+    }
 }

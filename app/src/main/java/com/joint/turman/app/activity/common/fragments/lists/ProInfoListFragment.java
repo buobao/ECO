@@ -66,4 +66,8 @@ public class ProInfoListFragment extends BaseListFragment<ProInfo, ProInfoAdapte
     public int getSearchHint() {
         return R.string.search_hint_proinfo;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+    }
 }

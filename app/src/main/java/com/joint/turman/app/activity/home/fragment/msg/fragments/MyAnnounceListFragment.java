@@ -65,4 +65,9 @@ public class MyAnnounceListFragment extends BaseListFragment<Announce,AnnounceAd
     public boolean showSearchBar(){
         return false;
     }
+
+    @Override
+    protected void itemSelected(int position) {
+
+    }
 }

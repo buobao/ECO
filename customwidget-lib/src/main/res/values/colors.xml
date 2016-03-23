@@ -103,4 +103,6 @@
     <color name="listitem_blue">@color/theme_default_700</color>
     <color name="listitem_gray">@color/colorLightGray</color>
     <color name="grayline">#e0e0e0</color>
+
+    <color name="section_color">#5E5E5E</color>
 </resources>
