@@ -12,6 +12,13 @@ public class Client extends BaseEntity {
     private String typeId;
     private String typeName;
 
+    private String invoiceTitle;
+    private String province;
+    private String city;
+    private String county;
+    private String remark;
+    private String situtation;
+
     public String getId() {
         return id;
     }
@@ -58,5 +65,53 @@ public class Client extends BaseEntity {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getInvoiceTitle() {
+        return invoiceTitle;
+    }
+
+    public void setInvoiceTitle(String invoiceTitle) {
+        this.invoiceTitle = invoiceTitle;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getSitutation() {
+        return situtation;
+    }
+
+    public void setSitutation(String situtation) {
+        this.situtation = situtation;
     }
 }

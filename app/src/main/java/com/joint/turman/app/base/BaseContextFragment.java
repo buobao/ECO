@@ -3,6 +3,8 @@ package com.joint.turman.app.base;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,18 @@ import java.util.Map;
 public abstract class BaseContextFragment<T extends BaseEntity> extends BaseFragment {
 
     //显示的实体数据
-    protected T entity;
+    protected T mEntity;
 
     protected Map<String, Object> params;
+
+    protected Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            Bundle bundle = msg.getData();
+            mEntity = (T) bundle.getSerializable("data");
+            setForm();
+        }
+    };
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     @Override
@@ -30,10 +41,9 @@ public abstract class BaseContextFragment<T extends BaseEntity> extends BaseFrag
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (params == null) {
-            Map<String, Object> params = new HashMap<String, Object>();
+            params = new HashMap<String, Object>();
             params.put("keyId", bundle.getString(CommonActivity.KEY_ID,""));
         }
-        loadData();
     }
 
     @Nullable
@@ -44,12 +54,11 @@ public abstract class BaseContextFragment<T extends BaseEntity> extends BaseFrag
         return view;
     }
 
-    protected abstract void loadData();
     protected abstract int getLayoutRes();
+    protected abstract void setForm();
 
     protected void initViews(View view){
         setHasOptionsMenu(true);
-
     }
 
 }

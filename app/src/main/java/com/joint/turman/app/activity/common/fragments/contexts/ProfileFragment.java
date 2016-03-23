@@ -17,20 +17,19 @@ public class ProfileFragment extends BaseContextFragment<User> implements View.O
     private Button mLogout;
 
     @Override
-    protected void loadData() {
-
+    protected int getLayoutRes() {
+        return R.layout.frg_profile;
     }
 
     @Override
-    protected int getLayoutRes() {
-        return R.layout.frg_profile;
+    protected void setForm() {
     }
 
     @Override
     protected void initViews(View view) {
         super.initViews(view);
 
-        entity = _app.getUserInfo();
+        mEntity = _app.getUserInfo();
         mCompany = (TableView) view.findViewById(R.id.user_info_company);
         mDepartment = (TableView) view.findViewById(R.id.user_info_department);
         mName = (TableView) view.findViewById(R.id.user_info_name);
@@ -39,11 +38,11 @@ public class ProfileFragment extends BaseContextFragment<User> implements View.O
 
         //这里的数据应该是通过发送请求获取，这里个人信息比较特殊，在用户登录后就已经获取并缓存，所以直接读取即可
         //这里的人员信息暂时设置为不可编辑
-        mCompany.showRightText(entity.getCompanyName());
-        mDepartment.showRightText(entity.getDepartmentName());
-        mName.showRightText(entity.getName());
+        mCompany.showRightText(mEntity.getCompanyName());
+        mDepartment.showRightText(mEntity.getDepartmentName());
+        mName.showRightText(mEntity.getName());
         mSex.showRightText("male");
-        mPhone.showRightText(entity.getPhone());
+        mPhone.showRightText(mEntity.getPhone());
 
         mLogout = (Button) view.findViewById(R.id.btn_logout);
         mLogout.setOnClickListener(this);
