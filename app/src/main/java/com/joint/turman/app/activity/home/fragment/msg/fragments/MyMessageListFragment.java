@@ -53,12 +53,7 @@ public class MyMessageListFragment extends BaseListFragment<Comment, MyMessageAd
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                CommentService.getAboutMeList(params,callback);
-            }
-        }).start();
+        CommentService.getAboutMeList(params, callback);
     }
 
     @Override

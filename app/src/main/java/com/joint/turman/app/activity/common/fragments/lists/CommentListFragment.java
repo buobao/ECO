@@ -49,12 +49,7 @@ public class CommentListFragment extends BaseListFragment<Comment, CommentAdapte
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                CommentService.getList(params, callback);
-            }
-        }).start();
+        CommentService.getList(params, callback);
     }
 
     @Override

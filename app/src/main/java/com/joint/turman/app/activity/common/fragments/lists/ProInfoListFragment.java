@@ -54,12 +54,7 @@ public class ProInfoListFragment extends BaseListFragment<ProInfo, ProInfoAdapte
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ProinfoService.getList(params, callback);
-            }
-        }).start();
+        ProinfoService.getList(params, callback);
     }
 
     @Override

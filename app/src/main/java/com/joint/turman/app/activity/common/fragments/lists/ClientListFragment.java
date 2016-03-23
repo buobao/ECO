@@ -58,13 +58,7 @@ public class ClientListFragment extends BaseListFragment<Client,ClientAdapter> {
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //params.put("catalog",1);
-                ClientService.getList(params,callback);
-            }
-        }).start();
+        ClientService.getList(params, callback);
     }
 
     @Override

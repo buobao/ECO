@@ -54,12 +54,7 @@ public class ProbackListFragment extends BaseListFragment<Proback, ProbackAdapte
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ProbackService.getList(params, callback);
-            }
-        }).start();
+        ProbackService.getList(params, callback);
     }
 
     @Override

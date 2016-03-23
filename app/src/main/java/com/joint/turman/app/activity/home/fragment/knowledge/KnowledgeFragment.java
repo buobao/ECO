@@ -53,12 +53,7 @@ public class KnowledgeFragment extends BaseListFragment<Knowledge, KnowledgeAdap
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                KnowledgeService.getList(params, callback);
-            }
-        }).start();
+        KnowledgeService.getList(params, callback);
     }
 
     @Override

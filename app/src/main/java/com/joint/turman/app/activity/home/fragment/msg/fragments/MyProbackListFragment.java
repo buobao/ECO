@@ -53,12 +53,7 @@ public class MyProbackListFragment extends BaseListFragment<Proback, ProbackAdap
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ProbackService.getRelatedMeList(params, callback);
-            }
-        }).start();
+        ProbackService.getRelatedMeList(params, callback);
     }
 
     @Override

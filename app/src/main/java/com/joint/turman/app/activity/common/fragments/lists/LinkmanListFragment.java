@@ -50,12 +50,7 @@ public class LinkmanListFragment extends BaseListFragment<Linkman, LinkmanAdapte
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                LinkmanService.getList(params, callback);
-            }
-        }).start();
+        LinkmanService.getList(params, callback);
     }
 
     @Override

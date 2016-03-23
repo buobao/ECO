@@ -53,12 +53,7 @@ public class MyAnnounceListFragment extends BaseListFragment<Announce,AnnounceAd
     @Override
     protected void loadData() {
         super.loadData();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                AnnounceService.getRelatedList(params, callback);
-            }
-        }).start();
+        AnnounceService.getRelatedList(params, callback);
     }
 
     @Override
