@@ -1,6 +1,9 @@
 package com.joint.turman.app.activity.common.fragments.lists;
 
+import android.os.Bundle;
+
 import com.joint.turman.app.R;
+import com.joint.turman.app.activity.common.ContentEnum;
 import com.joint.turman.app.activity.common.fragments.lists.adapters.ProInfoAdapter;
 import com.joint.turman.app.base.BaseListFragment;
 import com.joint.turman.app.bean.ListResult;
@@ -9,6 +12,7 @@ import com.joint.turman.app.entity.ProInfo;
 import com.joint.turman.app.entity.Status;
 import com.joint.turman.app.entity.callback.ProinfoListCallback;
 import com.joint.turman.app.service.ProinfoService;
+import com.joint.turman.app.sys.TurmanApplication;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -64,5 +68,8 @@ public class ProInfoListFragment extends BaseListFragment<ProInfo, ProInfoAdapte
 
     @Override
     protected void itemSelected(int position) {
+        String id = entityList.get(position).getId();
+        Bundle bundle = TurmanApplication.getContentBundle(ContentEnum.PROJECT_DETAIL,id);
+        TurmanApplication.openCommonActivity(getContext(), bundle);
     }
 }

@@ -42,4 +42,19 @@ public class ProinfoService extends BaseService<ProInfo> {
         builder.url(setUrl(Urls.PROINFO_LIST_RELATED));
         builder.build().execute(callback);
     }
+
+    /**
+     * 项目信息详情
+     * @param map
+     * @param callback
+     */
+    public static void getDetail(Map<String,Object> map, Callback callback){
+        GetBuilder builder = OkHttpUtils.get();
+        map = setParams(map);
+        for (String key : map.keySet()){
+            builder.addParams(key, map.get(key).toString());
+        }
+        builder.url(setUrl(Urls.PROINFO_DETAIL));
+        builder.build().execute(callback);
+    }
 }

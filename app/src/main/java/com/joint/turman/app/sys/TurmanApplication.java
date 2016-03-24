@@ -173,6 +173,11 @@ public class TurmanApplication extends BaseApplication {
         }
     }
 
+    /**
+     * 跳转到commen activity
+     * @param context
+     * @param bundle
+     */
     public static void openCommonActivity(Context context, Bundle bundle){
         openActivity(context, CommonActivity.class, bundle);
     }
@@ -241,6 +246,7 @@ public class TurmanApplication extends BaseApplication {
     /**
      * 辅助，依据枚举创建bundle
      * @param contentEnum
+     * @param keyId  实体ID
      * @return
      */
     public static Bundle getContentBundle(ContentEnum contentEnum, String keyId){
