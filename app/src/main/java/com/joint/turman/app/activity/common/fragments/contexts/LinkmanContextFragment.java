@@ -5,12 +5,14 @@ import android.os.Message;
 import android.view.View;
 
 import com.joint.turman.app.R;
+import com.joint.turman.app.activity.common.ContentEnum;
 import com.joint.turman.app.base.BaseContextFragment;
 import com.joint.turman.app.bean.Result;
 import com.joint.turman.app.entity.Linkman;
 import com.joint.turman.app.entity.Status;
 import com.joint.turman.app.entity.callback.LinkmanEntityCallback;
 import com.joint.turman.app.service.LinkmanService;
+import com.joint.turman.app.sys.TurmanApplication;
 import com.joint.turman.customwidget.section.ReadableSection;
 
 import okhttp3.Call;
@@ -68,6 +70,14 @@ public class LinkmanContextFragment extends BaseContextFragment<Linkman> {
     protected void setForm() {
         mName.setText(mEntity.getName());
         mInfo.setText(mEntity.getClientName());
+        mInfo.setOnTextListener(new ReadableSection.OnTextClickListener() {
+            @Override
+            public void onClick() {
+                String id = mEntity.getClientId();
+                Bundle bundle  = TurmanApplication.getContentBundle(ContentEnum.CLIENT_DETAIL, id);
+                TurmanApplication.openCommonActivity(getActivity(), bundle);
+            }
+        });
         mSubName.setText(mEntity.getSubName());
         mDuty.setText(mEntity.getDuty());
         mTel.setText(mEntity.getTel());

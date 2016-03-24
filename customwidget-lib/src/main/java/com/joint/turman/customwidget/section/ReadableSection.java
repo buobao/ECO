@@ -2,10 +2,11 @@ package com.joint.turman.customwidget.section;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.joint.turman.customwidget.R;
@@ -14,9 +15,12 @@ import com.joint.turman.customwidget.R;
  * Created by dqf on 2016/3/22.
  */
 public class ReadableSection extends LinearLayout {
-    private LinearLayout mLayout;
+    private RelativeLayout mLayout;
     private TextView mLabel;
     private TextView mText;
+
+    private RelativeLayout mTextLayout;
+    private ImageView mLinkImg;
 
     private OnTextClickListener mListener;
 
@@ -32,27 +36,30 @@ public class ReadableSection extends LinearLayout {
 
     private void init(Context context, AttributeSet attrs){
         View view = View.inflate(context, R.layout.widget_readable_section,null);
-        mLayout = (LinearLayout) view.findViewById(R.id.readable_layout);
+        mLayout = (RelativeLayout) view.findViewById(R.id.readable_layout);
         mLabel = (TextView) view.findViewById(R.id.readable_label);
         mText = (TextView) view.findViewById(R.id.readable_text);
+        mTextLayout = (RelativeLayout) view.findViewById(R.id.readable_text_layout);
+        mLinkImg = (ImageView) view.findViewById(R.id.readable_link_img);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.readable_section);
         if (a != null) {
             int background = a.getColor(R.styleable.readable_section_layout_background, getResources().getColor(R.color.listitem_white));
-            mLayout.setBackgroundColor(background);
+            //mLayout.setBackgroundColor(background);
             mLabel.setBackgroundColor(background);
             mText.setBackgroundColor(background);
 
             boolean isLink = a.getBoolean(R.styleable.readable_section_isLink, false);
 
             if (isLink) {
-                Drawable[] drawables = mText.getCompoundDrawables();
-                if (drawables[2] == null) {
-                    drawables[2] = getResources().getDrawable(R.drawable.text_arrow);
-                    mText.setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
-                }
+//                Drawable[] drawables = mText.getCompoundDrawables();
+//                if (drawables[2] == null) {
+//                    drawables[2] = getResources().getDrawable(R.drawable.text_arrow);
+//                    mText.setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
+//                }
+                mLinkImg.setVisibility(VISIBLE);
 
-                mText.setOnClickListener(new OnClickListener() {
+                mTextLayout.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (ReadableSection.this.mListener != null){
