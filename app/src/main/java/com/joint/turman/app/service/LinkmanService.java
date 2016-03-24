@@ -27,4 +27,19 @@ public class LinkmanService extends BaseService<Linkman> {
         builder.url(setUrl(Urls.LINKMAN_LIST));
         builder.build().execute(callback);
     }
+
+    /**
+     * 读取联系人详细信息
+     * @param map
+     * @param callback
+     */
+    public static void getDetail(Map<String, Object> map, Callback callback){
+        GetBuilder builder = OkHttpUtils.get();
+        map = setParams(map);
+        for (String key : map.keySet()){
+            builder.addParams(key, map.get(key).toString());
+        }
+        builder.url(setUrl(Urls.LINKMAN_DETAIL));
+        builder.build().execute(callback);
+    }
 }
