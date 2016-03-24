@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        style="@style/context_layout">
+        <com.joint.turman.customwidget.section.ReadableSection
+            android:id="@+id/frg_announce_subject"
+            style="@style/context_section"
+            app:label_text="公告主题:"
+            />
+        <com.joint.turman.customwidget.section.ReadableSection
+            android:id="@+id/frg_announce_content"
+            style="@style/context_section"
+            app:label_text="公告内容:"
+            />
+        <com.joint.turman.customwidget.section.ReadableSection
+            android:id="@+id/frg_announce_time"
+            style="@style/context_section"
+            app:label_text="发布日期:"
+            />
+        <com.joint.turman.customwidget.section.ReadableSection
+            android:id="@+id/frg_announce_object"
+            style="@style/context_section"
+            app:label_text="通知人员:"
+            />
+    </LinearLayout>
+</ScrollView>

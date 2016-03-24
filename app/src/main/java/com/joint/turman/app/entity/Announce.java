@@ -10,6 +10,8 @@ public class Announce extends BaseEntity {
     private String content;
     private String publishTime;
 
+    private String usersSet;
+
     public String getId() {
         return id;
     }
@@ -40,5 +42,13 @@ public class Announce extends BaseEntity {
 
     public void setPublishTime(String publishTime) {
         this.publishTime = publishTime;
+    }
+
+    public String getUsersSet() {
+        return usersSet;
+    }
+
+    public void setUsersSet(String usersSet) {
+        this.usersSet = usersSet;
     }
 }

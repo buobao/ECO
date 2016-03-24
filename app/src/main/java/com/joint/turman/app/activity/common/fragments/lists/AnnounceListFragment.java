@@ -1,6 +1,9 @@
 package com.joint.turman.app.activity.common.fragments.lists;
 
+import android.os.Bundle;
+
 import com.joint.turman.app.R;
+import com.joint.turman.app.activity.common.ContentEnum;
 import com.joint.turman.app.activity.common.fragments.lists.adapters.AnnounceAdapter;
 import com.joint.turman.app.base.BaseListFragment;
 import com.joint.turman.app.bean.ListResult;
@@ -9,6 +12,7 @@ import com.joint.turman.app.entity.ListEntity;
 import com.joint.turman.app.entity.Status;
 import com.joint.turman.app.entity.callback.AnnounceListCallback;
 import com.joint.turman.app.service.AnnounceService;
+import com.joint.turman.app.sys.TurmanApplication;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -65,6 +69,8 @@ public class AnnounceListFragment extends BaseListFragment<Announce, AnnounceAda
 
     @Override
     protected void itemSelected(int position) {
-
+        String id = entityList.get(position).getId();
+        Bundle bundle = TurmanApplication.getContentBundle(ContentEnum.ANNOUNCE_DETAIL,id);
+        TurmanApplication.openCommonActivity(getActivity(), bundle);
     }
 }
