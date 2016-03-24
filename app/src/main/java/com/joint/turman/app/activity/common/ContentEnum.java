@@ -5,6 +5,8 @@ import com.joint.turman.app.activity.common.fragments.CheckInfoFragment;
 import com.joint.turman.app.activity.common.fragments.ProjectFragment;
 import com.joint.turman.app.activity.common.fragments.contexts.ClientContextFragment;
 import com.joint.turman.app.activity.common.fragments.contexts.LinkmanContextFragment;
+import com.joint.turman.app.activity.common.fragments.contexts.ProLeaveContextFragment;
+import com.joint.turman.app.activity.common.fragments.contexts.ProSignContextFragment;
 import com.joint.turman.app.activity.common.fragments.contexts.ProfileFragment;
 import com.joint.turman.app.activity.common.fragments.contexts.ProinfoContextFragment;
 import com.joint.turman.app.activity.common.fragments.contexts.SettingFragment;
@@ -29,7 +31,9 @@ public enum ContentEnum {
     SETTING(8, R.string.act_home_setting, SettingFragment.class),
     CLIENT_DETAIL(9, R.string.client_context_title, ClientContextFragment.class),
     LINKMAN_DETAIL(10, R.string.linkman_context_title, LinkmanContextFragment.class),
-    PROJECT_DETAIL(11, R.string.project_context_title, ProinfoContextFragment.class);
+    PROJECT_DETAIL(11, R.string.project_context_title, ProinfoContextFragment.class),
+    PROSIGN_DETAIL(12, R.string.check_context_title, ProSignContextFragment.class),
+    PROLEAVE_DETAIL(13, R.string.proleave_context_title, ProLeaveContextFragment.class);
 
     private int title;
     private Class<?> clz;

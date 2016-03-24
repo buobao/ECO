@@ -36,6 +36,7 @@
     <string name="proback_context_title">项目反馈</string>
     <string name="notice_context_title">公告详情</string>
     <string name="knowledge_context_title">知识库信息</string>
+    <string name="proleave_context_title">请假信息</string>
 
 
     <string name="act_home_bottom_1">我的消息</string>

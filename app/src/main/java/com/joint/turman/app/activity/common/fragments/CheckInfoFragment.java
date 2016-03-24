@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
@@ -17,12 +18,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.joint.turman.app.R;
-import com.joint.turman.app.activity.common.fragments.lists.adapters.ProInfoAdapter;
+import com.joint.turman.app.activity.common.ContentEnum;
+import com.joint.turman.app.activity.common.fragments.lists.adapters.ProSignAdapter;
 import com.joint.turman.app.bean.ListResult;
 import com.joint.turman.app.entity.ListEntity;
-import com.joint.turman.app.entity.ProInfo;
+import com.joint.turman.app.entity.ProSign;
 import com.joint.turman.app.entity.Status;
-import com.joint.turman.app.entity.callback.ProinfoListCallback;
+import com.joint.turman.app.entity.callback.ProSignListCallback;
 import com.joint.turman.app.internate.callback.Callback;
 import com.joint.turman.app.service.UserService;
 import com.joint.turman.app.sys.TurmanApplication;
@@ -59,8 +61,8 @@ public class CheckInfoFragment extends Fragment {
     private SimpleListView mListView;
     private TextView mErrorMessage;
 
-    private LinkedList<ProInfo> entityList;
-    private ProInfoAdapter adapter;
+    private LinkedList<ProSign> entityList;
+    private ProSignAdapter adapter;
     private int pageIndex = 1;
     private Map<String,Object> params;
     private boolean mIsAllLoaded = false;
@@ -78,7 +80,7 @@ public class CheckInfoFragment extends Fragment {
             switch (msg.what){
                 case 0x01:
                     resetList();
-                    adapter = new ProInfoAdapter(entityList, getActivity());
+                    adapter = new ProSignAdapter(entityList, getActivity());
                     mListView.setAdapter(adapter);
                     pageIndex++;
                     break;
@@ -146,7 +148,7 @@ public class CheckInfoFragment extends Fragment {
         }
     };
 
-    private ProinfoListCallback callback = new ProinfoListCallback(){
+    private ProSignListCallback callback = new ProSignListCallback(){
         @Override
         public void onError(Call call, Exception e) {
             super.onError(call, e);
@@ -154,14 +156,14 @@ public class CheckInfoFragment extends Fragment {
         }
 
         @Override
-        public void onResponse(ListResult<ProInfo> response) {
+        public void onResponse(ListResult<ProSign> response) {
             Status status = response.getResult();
             if (status.getErrorCode() == 1){
-                ListEntity<ProInfo> result = response.getData();
-                List<ProInfo> list = result.getList();
+                ListEntity<ProSign> result = response.getData();
+                List<ProSign> list = result.getList();
                 if (list != null && list.size() > 0) {
                     if (entityList == null) {
-                        entityList = (LinkedList<ProInfo>) list;
+                        entityList = (LinkedList<ProSign>) list;
                         mhandler.sendEmptyMessage(0x01);
                         if (list.size() < TurmanApplication.getPageSize()){
                             mhandler.sendEmptyMessage(0x03);
@@ -233,6 +235,27 @@ public class CheckInfoFragment extends Fragment {
             }
         });
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String entityId = entityList.get(position).getId();
+                String entityType = entityList.get(position).getType();
+
+                ContentEnum tp = null;
+                if ("Signin".equals(entityType)){
+                    tp = ContentEnum.PROSIGN_DETAIL;
+                }
+
+                if ("Leave".equals(entityType)){
+                    tp = ContentEnum.PROLEAVE_DETAIL;
+                }
+                if (tp != null) {
+                    Bundle bundle = TurmanApplication.getContentBundle(tp, entityId);
+                    TurmanApplication.openCommonActivity(getContext(), bundle);
+                }
+            }
+        });
+
         loadDecorator();
         return view;
     }
@@ -246,16 +269,11 @@ public class CheckInfoFragment extends Fragment {
     }
 
     private void loadDecorator(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Map<String,Object> dataList_params = new HashMap<String, Object>();
-                dataList_params.put("_startTime", mMonthStart.getTime());
-                dataList_params.put("_endTime", DateUtils.tomorrow(mMonthEnd).getTime());
-                //dataList_params.put("proinfoId","");
-                UserService.getCalendarDateList(dataList_params, datelist_callback);
-            }
-        }).start();
+        Map<String,Object> dataList_params = new HashMap<String, Object>();
+        dataList_params.put("_startTime", mMonthStart.getTime());
+        dataList_params.put("_endTime", DateUtils.tomorrow(mMonthEnd).getTime());
+        //dataList_params.put("proinfoId","");
+        UserService.getCalendarDateList(dataList_params, datelist_callback);
     }
 
     @Override
@@ -282,12 +300,7 @@ public class CheckInfoFragment extends Fragment {
             params.put("_endTime",DateUtils.getDayEnd(new Date()).getTime());
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserService.getCalendarDate(params,callback);
-            }
-        }).start();
+        UserService.getCalendarDate(params, callback);
     }
 
     private void reloadDate(){
